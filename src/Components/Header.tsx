@@ -18,7 +18,7 @@ const useStyles = createUseStyles({
     
     "& h1": {
       textAlign: "center",
-      fontSize: "1.25rem",
+      fontSize: "1.5rem",
       padding: "1rem 0",
       "@media (min-width: 768px)": {
         fontSize: "2rem",
