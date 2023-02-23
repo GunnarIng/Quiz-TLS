@@ -1,24 +1,30 @@
 import { createUseStyles } from 'react-jss';
+import { Outlet } from 'react-router';
 import { Header } from './Components/Header';
 
-function App() {
+export default function App() {
   const classes = useStyles()
 
   return (
     <div className="App">
       <Header />
-      <h1>helli <span>sluta</span></h1>
-      <h1>kopeter</h1>
+      <main>
+        <Outlet />
+      </main>
     </div>
   )
 }
 
-export default App
 
 
 const useStyles = createUseStyles({
 
 });
+
+
+// 1. Startsidan visar alla katogorier
+// 2. Vald katogori tar en till QuizBoard och tar och visar komponent som till vald kat. 
+// 3. 
 
 
 // const useStyles = createUseStyles({
