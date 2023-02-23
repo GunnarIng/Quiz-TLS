@@ -12,15 +12,11 @@ export default function App() {
         <Outlet />
       </main>
     </div>
-  )
+  );
 }
 
 
-
-const useStyles = createUseStyles({
-
-});
-
+const useStyles = createUseStyles({});
 
 // 1. Startsidan visar alla katogorier
 // 2. Vald katogori tar en till QuizBoard och tar och visar komponent som till vald kat. 
@@ -32,12 +28,12 @@ const useStyles = createUseStyles({
 //     color: 'green',
 //     margin: "5rem 3rem 0 0",
 //     border: "1px solid red",
-    
+
 //     '& span': {
 //       color: "pink",
 //     },
 //   },
-  
+
 //   myH2: {
 //     color: "orange",
 //     boxShadow:"0px 10px 8px black",
@@ -47,5 +43,5 @@ const useStyles = createUseStyles({
 //       color: "blue",
 //     }
 //   },
-  
+
 // });
