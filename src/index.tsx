@@ -9,14 +9,14 @@ import {
 import App from "./App";
 import "./index.css";
 import { HomePage } from "./pages/HomePage";
-import { QFilm } from "./pages/QFilm";
+import { QuizPage } from "./pages/QuizPage";
 import { Result } from "./pages/Result";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<HomePage />} />
-      <Route path=":catagory" element={<QFilm />} />
+      <Route path=":catagory" element={<QuizPage />} />
       <Route path="result" element={<Result />} />
     </Route>
   )
