@@ -2,35 +2,39 @@ import { useParams } from "react-router-dom";
 
 export function QuizPage() {
   const params = useParams();
-  // switch case for each catagory
-  switch (params.catagory) {
+  let categoryName;
+  
+console.log("params.category", params.category)
+  switch (params.category) {
     case "film":
-      console.log("film");
+      categoryName = "Film";
       break;
     case "music":
-      console.log("music");
+      categoryName = "Music";
       break;
     case "animals":
-      console.log("animals");
+      categoryName = "Animals";
       break;
     case "science":
-      console.log("science");
+      categoryName = "Science";
       break;
     case "general-knowledge":
-      console.log("general-knowledge");
+      categoryName = "General Knowledge";
       break;
     case "sport":
-      console.log("sport");
+      categoryName = "Sport";
       break;
     case "vehicles":
-      console.log("vehicles");
+      categoryName = "Vehicles";
       break;
     default:
+      categoryName = "Unknown";
   }
-
+  console.log("categoryName:", categoryName);
   return (
     <div>
       <h1>Quiz Page</h1>
+      <h4>Category: {categoryName}</h4>
       {/* Add your quiz content here */}
     </div>
   );
