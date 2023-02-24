@@ -1,10 +1,12 @@
+import { createUseStyles } from "react-jss";
 import { useParams } from "react-router-dom";
 
 export function QuizPage() {
   const params = useParams();
+  const classes = useStyles();
   let categoryName;
-  
-console.log("params.category", params.category)
+
+  console.log("params.category", params.category);
   switch (params.category) {
     case "film":
       categoryName = "Film";
@@ -33,9 +35,30 @@ console.log("params.category", params.category)
   console.log("categoryName:", categoryName);
   return (
     <div>
-      <h1>Quiz Page</h1>
-      <h4>Category: {categoryName}</h4>
-      {/* Add your quiz content here */}
+      <h4 className={classes.subjectTitle}>Category: {categoryName}</h4>
+      <div className={classes.questionBox}>
+        <div>This is where the api inputs will show</div>
+      
+      </div>
     </div>
   );
 }
+
+const useStyles = createUseStyles({
+  subjectTitle: {
+    fontSize: "2rem",
+    textAlign: "center",
+    padding: "4rem",
+  },
+  questionBox: {
+    border: "1px solid black",
+    borderRadius: "1rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "70%",
+    margin: "0 auto",
+    padding: "1rem",
+    height: "300px",
+  },
+});
