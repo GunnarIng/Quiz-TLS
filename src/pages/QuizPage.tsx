@@ -40,6 +40,12 @@ export function QuizPage() {
         <div>This is where the api inputs will show</div>
       
       </div>
+      <div className={classes.answareContainer}>
+        <div className={classes["answareBox"]}>answare 2</div>
+        <div className={classes["answareBox"]}>answare 1</div>
+        <div className={classes["answareBox"]}>answare 3</div>
+        <div className={classes["answareBox"]}>answare 4</div>
+      </div>
     </div>
   );
 }
@@ -53,7 +59,7 @@ const useStyles = createUseStyles({
   questionBox: {
     border: "1px solid black",
     borderRadius: "1rem",
-    display: "flex",
+    display: "grid",
     justifyContent: "center",
     alignItems: "center",
     width: "70%",
@@ -61,4 +67,24 @@ const useStyles = createUseStyles({
     padding: "1rem",
     height: "300px",
   },
+  answareContainer: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    padding: "2rem 0 0 0",
+    gap: "1rem",
+    width: "70%", 
+    margin: "0 auto",
+
+  },
+  answareBox: {
+    border: "1px solid black",
+    borderRadius: "1rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "70%",
+    margin: "0 auto",
+    padding: "1rem",
+    
+  }
 });
