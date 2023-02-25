@@ -1,9 +1,12 @@
 import { createUseStyles } from "react-jss";
 import { useParams } from "react-router-dom";
+import { useCategoryColor } from "../hooks/useCategoryColor";
 
 export function QuizPage() {
   const params = useParams();
   const classes = useStyles();
+  const categoryColor = useCategoryColor(params.category);
+
   let categoryName;
 
   console.log("params.category", params.category);
@@ -36,15 +39,37 @@ export function QuizPage() {
   return (
     <div>
       <h4 className={classes.subjectTitle}>Category: {categoryName}</h4>
-      <div className={classes.questionBox}>
+      <div
+        className={classes.questionBox}
+        style={{ backgroundColor: categoryColor.backgroundColor }}
+      >
         <div>This is where the api inputs will show</div>
-      
       </div>
       <div className={classes.answareContainer}>
-        <div className={classes["answareBox"]}>answare 2</div>
-        <div className={classes["answareBox"]}>answare 1</div>
-        <div className={classes["answareBox"]}>answare 3</div>
-        <div className={classes["answareBox"]}>answare 4</div>
+        <div
+          className={classes["answareBox"]}
+          style={{ backgroundColor: categoryColor.backgroundColor }}
+        >
+          answare 1
+        </div>
+        <div
+          className={classes["answareBox"]}
+          style={{ backgroundColor: categoryColor.backgroundColor }}
+        >
+          answare 2
+        </div>
+        <div
+          className={classes["answareBox"]}
+          style={{ backgroundColor: categoryColor.backgroundColor }}
+        >
+          answare 3
+        </div>
+        <div
+          className={classes["answareBox"]}
+          style={{ backgroundColor: categoryColor.backgroundColor }}
+        >
+          answare 4
+        </div>
       </div>
     </div>
   );
@@ -72,9 +97,8 @@ const useStyles = createUseStyles({
     gridTemplateColumns: "1fr 1fr",
     padding: "2rem 0 0 0",
     gap: "1rem",
-    width: "70%", 
+    width: "70%",
     margin: "0 auto",
-
   },
   answareBox: {
     border: "1px solid black",
@@ -85,6 +109,5 @@ const useStyles = createUseStyles({
     width: "70%",
     margin: "0 auto",
     padding: "1rem",
-    
-  }
+  },
 });
