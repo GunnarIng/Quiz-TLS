@@ -22,13 +22,12 @@ const useStyles = createUseStyles({
     flexDirection: "column",
     alignItems: "center",
     position: "relative",
-    height: "calc(100vh - 58.4px)",
+    height: "calc(100vh - 85px)",
     overflow: "hidden",
-    border: "2px solid green",
   },
   h2Style: {
     fontSize: "1.4rem",
-    padding: "8% 0 16%",
+    padding: "6% 0 12%",
     width: "100%",
     textAlign: "center",
     "@media (min-width: 768px)": {
@@ -47,6 +46,6 @@ const useStyles = createUseStyles({
     width: "100%",
     height: "100%",
     zIndex: "-1",
-    opacity: "0.3",
+    opacity: "0.6",
   },
 });
