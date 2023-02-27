@@ -12,18 +12,22 @@ export function Category(props: Props) {
   const categoryWidth = { width: props.width };
 
   return (
-    <div className={classes.categoryStyle} style={{ ...BGcolorStyle, ...categoryWidth }}>
+    <div
+      className={classes.categoryStyle}
+      style={{ ...BGcolorStyle, ...categoryWidth }}
+    >
       <h4 className={classes.categoryTextStyle}>{props.children}</h4>
     </div>
   );
 }
 
 const useStyles = createUseStyles({
-    categoryStyle: {
-      textAlign:"center",
-      borderRadius: "1rem",
-    },
-    categoryTextStyle: {
-      padding:"1rem 0",
-    }
+  categoryStyle: {
+    textAlign: "center",
+    borderRadius: "1rem",
+  },
+  categoryTextStyle: {
+    padding: "1rem 0",
+    color: "white",
+  },
 });
