@@ -1,10 +1,20 @@
-import { createUseStyles } from 'react-jss';
-import { Outlet } from 'react-router';
-import { Header } from './Components/Header';
+import { useEffect, useState } from "react";
+import { createUseStyles } from "react-jss";
+import { Outlet } from "react-router";
+import { Header } from "./Components/Header";
+
+// interface Question {
+//   category: string;
+//   type: string;
+//   difficulty: string;
+//   question: string;
+//   correct_answer: string;
+//   incorrect_answers: string[];
+// }
+
 
 export default function App() {
-  const classes = useStyles()
-
+  
   return (
     <div className="App">
       <Header />
@@ -15,13 +25,11 @@ export default function App() {
   );
 }
 
-
 const useStyles = createUseStyles({});
 
 // 1. Startsidan visar alla katogorier
-// 2. Vald katogori tar en till QuizBoard och tar och visar komponent som till vald kat. 
-// 3. 
-
+// 2. Vald katogori tar en till QuizBoard och tar och visar komponent som till vald kat.
+// 3.
 
 // const useStyles = createUseStyles({
 //   myH1: {
@@ -45,3 +53,6 @@ const useStyles = createUseStyles({});
 //   },
 
 // });
+
+
+

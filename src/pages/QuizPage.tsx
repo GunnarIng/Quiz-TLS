@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { createUseStyles } from "react-jss";
 import { useParams } from "react-router-dom";
 import { useCategoryColor } from "../hooks/useCategoryColor";
@@ -6,10 +7,22 @@ export function QuizPage() {
   const params = useParams();
   const classes = useStyles();
   const categoryColor = useCategoryColor(params.category);
-
   let categoryName;
 
-  console.log("params.category", params.category);
+  const [data, setData] = useState([]);
+  
+
+
+  useEffect(() => {
+    fetch("https://opentdb.com/api.php?amount=10&category=11&type=multiple")
+      .then((response) => response.json())
+      .then((result) => {
+        setData(result.results);
+      });
+  }, []);
+
+  // console.log(data[0]);
+
   switch (params.category) {
     case "film":
       categoryName = "Film";
@@ -35,7 +48,7 @@ export function QuizPage() {
     default:
       categoryName = "Unknown";
   }
-  console.log("categoryName:", categoryName);
+  // console.log("categoryName:", categoryName);
   return (
     <div>
       <h4 className={classes.subjectTitle}>{categoryName}</h4>
@@ -43,29 +56,29 @@ export function QuizPage() {
         className={classes.questionBox}
         style={{ backgroundColor: categoryColor.backgroundColor }}
       >
-        <div>This is where the api inputs will show</div>
+        <div dangerouslySetInnerHTML={{ __html: data[0]?.question }}></div>
       </div>
-      <div className={classes.answareContainer}>
+      <div className={classes.answerContainer}>
         <div
-          className={classes["answareBox"]}
+          className={classes["answerBox"]}
           style={{ backgroundColor: categoryColor.backgroundColor }}
         >
           answare 1
         </div>
         <div
-          className={classes["answareBox"]}
+          className={classes["answerBox"]}
           style={{ backgroundColor: categoryColor.backgroundColor }}
         >
           answare 2
         </div>
         <div
-          className={classes["answareBox"]}
+          className={classes["answerBox"]}
           style={{ backgroundColor: categoryColor.backgroundColor }}
         >
           answare 3
         </div>
         <div
-          className={classes["answareBox"]}
+          className={classes["answerBox"]}
           style={{ backgroundColor: categoryColor.backgroundColor }}
         >
           answare 4
@@ -92,7 +105,7 @@ const useStyles = createUseStyles({
     padding: "1rem",
     height: "300px",
   },
-  answareContainer: {
+  answerContainer: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
     padding: "2rem 0 0 0",
@@ -100,7 +113,7 @@ const useStyles = createUseStyles({
     width: "70%",
     margin: "0 auto",
   },
-  answareBox: {
+  answerBox: {
     border: "1px solid black",
     borderRadius: "1rem",
     display: "flex",
