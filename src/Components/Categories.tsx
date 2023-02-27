@@ -36,10 +36,8 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap:"1rem",
-    width:"70%",
-    maxWidth:"50rem",
-    border:"2px solid white",
-    
+    gap: "1rem",
+    width: "70%",
+    maxWidth: "50rem",
   },
 });

@@ -15,7 +15,11 @@ export function Header() {
 const useStyles = createUseStyles({
   headerContainer: {
     background: "#691B37",
-    
+    height: "85px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+
     "& h1": {
       textAlign: "center",
       fontSize: "1.5rem",
