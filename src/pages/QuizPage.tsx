@@ -1,5 +1,7 @@
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createUseStyles } from "react-jss";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useCategoryColor } from "../hooks/useCategoryColor";
 
 export function QuizPage() {
@@ -36,39 +38,49 @@ export function QuizPage() {
       categoryName = "Unknown";
   }
   console.log("categoryName:", categoryName);
+
   return (
     <div>
-      <h4 className={classes.subjectTitle}>{categoryName}</h4>
+      <h4 className={classes.subjectTitle}>
+        {categoryName}
+
+        <NavLink to="/">
+          <div className={classes.homeBtn}>
+            {<FontAwesomeIcon icon={faHouse} />}
+            HOME
+          </div>
+        </NavLink>
+      </h4>
       <div
         className={classes.questionBox}
         style={{ backgroundColor: categoryColor.backgroundColor }}
       >
         <div>This is where the api inputs will show</div>
       </div>
-      <div className={classes.answareContainer}>
+      <div className={classes.answerContainer}>
         <div
-          className={classes["answareBox"]}
+          className={classes.answerBox}
           style={{ backgroundColor: categoryColor.backgroundColor }}
         >
-          answare 1
+          answer 1
         </div>
         <div
-          className={classes["answareBox"]}
+          className={classes.answerBox}
           style={{ backgroundColor: categoryColor.backgroundColor }}
         >
-          answare 2
+          answer 2
         </div>
         <div
-          className={classes["answareBox"]}
+          className={classes.answerBox}
           style={{ backgroundColor: categoryColor.backgroundColor }}
         >
-          answare 3
+          answer 3
         </div>
         <div
-          className={classes["answareBox"]}
+          className={classes.answerBox}
           style={{ backgroundColor: categoryColor.backgroundColor }}
         >
-          answare 4
+          answer 4
         </div>
       </div>
     </div>
@@ -79,7 +91,8 @@ const useStyles = createUseStyles({
   subjectTitle: {
     fontSize: "2rem",
     textAlign: "center",
-    padding: "4rem",
+    padding: "4rem 0",
+    position: "relative",
   },
   questionBox: {
     border: "1px solid black",
@@ -92,7 +105,7 @@ const useStyles = createUseStyles({
     padding: "1rem",
     height: "300px",
   },
-  answareContainer: {
+  answerContainer: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
     padding: "2rem 0 0 0",
@@ -100,7 +113,7 @@ const useStyles = createUseStyles({
     width: "70%",
     margin: "0 auto",
   },
-  answareBox: {
+  answerBox: {
     border: "1px solid black",
     borderRadius: "1rem",
     display: "flex",
@@ -110,4 +123,27 @@ const useStyles = createUseStyles({
     margin: "0 auto",
     padding: "1rem",
   },
+  homeBtn: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "right",
+    gap: "0.6rem",
+    position: "absolute",
+    top: "50%",
+    fontSize: "1.5rem",
+    left: "-1.8rem",
+    padding: "0.6rem 1.25rem 0.6rem 2.2rem",
+    borderRadius: "10000rem",
+    transform: "translateY(-50%)",
+    backgroundColor: "#3e3a44",
+    textDecoration: "none",
+    color: "white",
+    "&:hover": {
+      color: "#3e3a44",
+      background: "white",
+      transition: "all 0.3s ease-in-out",
+    },
+  },
 });
+
+
