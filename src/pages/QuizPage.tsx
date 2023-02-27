@@ -2,6 +2,7 @@ import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
+import { AnswerButton } from "../Components/AnswerButton";
 import { useCategoryColor } from "../hooks/useCategoryColor";
 
 export function QuizPage() {
@@ -58,30 +59,12 @@ export function QuizPage() {
         <div>This is where the api inputs will show</div>
       </div>
       <div className={classes.answerContainer}>
-        <div
-          className={classes.answerBox}
-          style={{ backgroundColor: categoryColor.backgroundColor }}
-        >
-          answer 1
-        </div>
-        <div
-          className={classes.answerBox}
-          style={{ backgroundColor: categoryColor.backgroundColor }}
-        >
-          answer 2
-        </div>
-        <div
-          className={classes.answerBox}
-          style={{ backgroundColor: categoryColor.backgroundColor }}
-        >
-          answer 3
-        </div>
-        <div
-          className={classes.answerBox}
-          style={{ backgroundColor: categoryColor.backgroundColor }}
-        >
-          answer 4
-        </div>
+        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 1</AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 2</AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 3</AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 4</AnswerButton>
+        
+        
       </div>
     </div>
   );
@@ -107,21 +90,9 @@ const useStyles = createUseStyles({
   },
   answerContainer: {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr",
     padding: "2rem 0 0 0",
     gap: "1rem",
-    width: "70%",
     margin: "0 auto",
-  },
-  answerBox: {
-    border: "1px solid black",
-    borderRadius: "1rem",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "70%",
-    margin: "0 auto",
-    padding: "1rem",
   },
   homeBtn: {
     display: "flex",
@@ -145,5 +116,3 @@ const useStyles = createUseStyles({
     },
   },
 });
-
-
