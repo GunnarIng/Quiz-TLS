@@ -59,7 +59,6 @@ const useStyles = createUseStyles({
     gap: "1rem",
     width: "70%",
     maxWidth: "50rem",
-    border: "2px solid white",
   },
   linkStyles: {
     display: "flex",
