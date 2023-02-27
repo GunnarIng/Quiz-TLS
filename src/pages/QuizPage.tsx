@@ -38,7 +38,7 @@ export function QuizPage() {
   console.log("categoryName:", categoryName);
   return (
     <div>
-      <h4 className={classes.subjectTitle}>Category: {categoryName}</h4>
+      <h4 className={classes.subjectTitle}>{categoryName}</h4>
       <div
         className={classes.questionBox}
         style={{ backgroundColor: categoryColor.backgroundColor }}
