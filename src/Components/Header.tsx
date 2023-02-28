@@ -20,9 +20,7 @@ export function Header() {
         }
       >
         <h1>The Quizie-Quiz Game</h1>
-        <div className={classes.darkMode}>
-          <DarkMode mode={mode} toggleMode={toggleMode} />
-        </div>
+        <DarkMode mode={mode} toggleMode={toggleMode} />
       </div>
     </>
   );
@@ -31,13 +29,12 @@ export function Header() {
 const useStyles = createUseStyles({
   headerContainer: {
     color: "black",
-    background: "whitesmoke",
+    background: "white",
     borderBottom: "6px solid gray",
     height: "85px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    border: "2px solid green",
 
     "& h1": {
       textAlign: "center",
@@ -59,7 +56,6 @@ const useStyles = createUseStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    border: "2px solid green",
 
     "& h1": {
       textAlign: "center",
@@ -72,8 +68,5 @@ const useStyles = createUseStyles({
         fontSize: "3rem",
       },
     },
-  },
-  darkMode: {
-    marginRight: "1rem",
   },
 });

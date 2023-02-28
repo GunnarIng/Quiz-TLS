@@ -19,7 +19,7 @@ export function AnswerButton(props: Props) {
 
 const useStyles = createUseStyles({
   answerBox: {
-    border: "1px solid black",
+    border: "1px solid transparent",
     borderRadius: "1rem",
     display: "flex",
     justifyContent: "center",

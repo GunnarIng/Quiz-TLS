@@ -1,3 +1,5 @@
+import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createUseStyles } from "react-jss";
 
 type DarkModeProps = {
@@ -22,10 +24,22 @@ export function DarkMode({ mode, toggleMode }: DarkModeProps) {
 
   return (
     <button
-      className={mode === "light" ? classes.lightMode : classes.darkMode}
+      className={`${mode === "light" ? classes.lightMode : classes.darkMode} ${
+        classes.button
+      }`}
       onClick={handleModeChange}
     >
-      {mode === "light" ? "Dark Mode" : "Light Mode"}
+      {mode === "light" ? (
+        <>
+          <FontAwesomeIcon icon={faLightbulb} />
+          <span>Light</span>
+        </>
+      ) : (
+        <>
+          <FontAwesomeIcon icon={faLightbulb} />
+          <span>Dark</span>
+        </>
+      )}
     </button>
   );
 }
@@ -52,5 +66,11 @@ const useStyles = createUseStyles({
     "&:hover": {
       fontWeight: "bold",
     },
+  },
+  button: {
+    border: "2px solid grey",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
 });
