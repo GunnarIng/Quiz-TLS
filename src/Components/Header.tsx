@@ -15,7 +15,7 @@ export function Header() {
 const useStyles = createUseStyles({
   headerContainer: {
     color:"black",
-    background: "white",
+    background: "whitesmoke",
     borderBottom: "6px solid gray",
     height: "85px",
     display: "flex",
