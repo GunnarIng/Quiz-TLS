@@ -1,6 +1,9 @@
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { createUseStyles } from "react-jss";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import { AnswerButton } from "../Components/AnswerButton";
 import { useCategoryColor } from "../hooks/useCategoryColor";
 
 export function QuizPage() {
@@ -10,8 +13,6 @@ export function QuizPage() {
   let categoryName;
 
   const [data, setData] = useState([]);
-  
-
 
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=10&category=11&type=multiple")
@@ -48,10 +49,20 @@ export function QuizPage() {
     default:
       categoryName = "Unknown";
   }
-  // console.log("categoryName:", categoryName);
+  console.log("categoryName:", categoryName);
+
   return (
     <div>
-      <h4 className={classes.subjectTitle}>{categoryName}</h4>
+      <h4 className={classes.subjectTitle}>
+        {categoryName}
+
+        <NavLink to="/">
+          <div className={classes.homeBtn}>
+            {<FontAwesomeIcon icon={faHouse} />}
+            HOME
+          </div>
+        </NavLink>
+      </h4>
       <div
         className={classes.questionBox}
         style={{ backgroundColor: categoryColor.backgroundColor }}
@@ -59,30 +70,22 @@ export function QuizPage() {
         <div dangerouslySetInnerHTML={{ __html: data[0]?.question }}></div>
       </div>
       <div className={classes.answerContainer}>
-        <div
-          className={classes["answerBox"]}
-          style={{ backgroundColor: categoryColor.backgroundColor }}
-        >
-          answare 1
-        </div>
-        <div
-          className={classes["answerBox"]}
-          style={{ backgroundColor: categoryColor.backgroundColor }}
-        >
-          answare 2
-        </div>
-        <div
-          className={classes["answerBox"]}
-          style={{ backgroundColor: categoryColor.backgroundColor }}
-        >
-          answare 3
-        </div>
-        <div
-          className={classes["answerBox"]}
-          style={{ backgroundColor: categoryColor.backgroundColor }}
-        >
-          answare 4
-        </div>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          {" "}
+          answer 1
+        </AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          {" "}
+          answer 2
+        </AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          {" "}
+          answer 3
+        </AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          {" "}
+          answer 4
+        </AnswerButton>
       </div>
     </div>
   );
@@ -92,7 +95,8 @@ const useStyles = createUseStyles({
   subjectTitle: {
     fontSize: "2rem",
     textAlign: "center",
-    padding: "4rem",
+    padding: "4rem 0",
+    position: "relative",
   },
   questionBox: {
     border: "1px solid black",
@@ -107,20 +111,31 @@ const useStyles = createUseStyles({
   },
   answerContainer: {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr",
     padding: "2rem 0 0 0",
     gap: "1rem",
-    width: "70%",
     margin: "0 auto",
   },
-  answerBox: {
+  answareBox: {
     border: "1px solid black",
     borderRadius: "1rem",
     display: "flex",
-    justifyContent: "center",
     alignItems: "center",
-    width: "70%",
-    margin: "0 auto",
-    padding: "1rem",
+    justifyContent: "right",
+    gap: "0.6rem",
+    position: "absolute",
+    top: "50%",
+    fontSize: "1.5rem",
+    left: "-1.8rem",
+    padding: "0.6rem 1.25rem 0.6rem 2.2rem",
+    borderRadius: "10000rem",
+    transform: "translateY(-50%)",
+    backgroundColor: "#3e3a44",
+    textDecoration: "none",
+    color: "white",
+    "&:hover": {
+      color: "#3e3a44",
+      background: "white",
+      transition: "all 0.3s ease-in-out",
+    },
   },
 });
