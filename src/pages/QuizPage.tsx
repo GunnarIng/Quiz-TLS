@@ -1,6 +1,5 @@
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
 import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
 import { AnswerButton } from "../Components/AnswerButton";
@@ -70,22 +69,12 @@ export function QuizPage() {
         <div dangerouslySetInnerHTML={{ __html: data[0]?.question }}></div>
       </div>
       <div className={classes.answerContainer}>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          {" "}
-          answer 1
-        </AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          {" "}
-          answer 2
-        </AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          {" "}
-          answer 3
-        </AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          {" "}
-          answer 4
-        </AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 1</AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 2</AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 3</AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 4</AnswerButton>
+        
+        
       </div>
     </div>
   );
