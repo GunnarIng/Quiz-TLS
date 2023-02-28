@@ -25,9 +25,13 @@ export function useQuiz(category?: string) {
       .then((response) => response.json())
       .then(({trivia_categories}) => {
         //  tolowercas.include fixar att kategorin "General Knowledge" matchar med "general-knowledge"
-        const {id} = trivia_categories.find((c: Category) => c.name === category);
-        return fetch(`https://opentdb.com/api.php?amount=10&category=${id}&type=multiple`)
-      })
+      //   const {id} = trivia_categories.find((c: Category) => c.name == category);
+      //   return fetch(`https://opentdb.com/api.php?amount=10&category=${id}&type=multiple`)
+      // })
+      const formattedCategory = category?.toLowerCase().split(' ').join('-');
+      const { id } = trivia_categories.find((c: Category) => c.name.toLowerCase().split(' ').join('-') === formattedCategory);
+      return fetch(`https://opentdb.com/api.php?amount=10&category=${id}&type=multiple`)
+    })
       .then((response) => response.json())
       .then(({ results }) => setQuiz(results));
   }, [category]);
