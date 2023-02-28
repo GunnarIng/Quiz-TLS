@@ -8,7 +8,13 @@ export function HomePage() {
   return (
     <>
       <div className={classes.rootStyle}>
-        <video src={video} className={classes.videoStyle} autoPlay muted loop></video>
+        <video
+          src={video}
+          className={classes.videoStyle}
+          autoPlay
+          muted
+          loop
+        ></video>
         <h2 className={classes.h2Style}>Choose Category</h2>
         <Categories />
       </div>

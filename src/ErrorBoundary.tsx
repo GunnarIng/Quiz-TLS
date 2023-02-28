@@ -2,7 +2,7 @@ import { Component, ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
-  message: ReactNode;
+  message: string;
 }
 
 interface State {

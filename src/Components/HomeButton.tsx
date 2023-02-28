@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createUseStyles } from "react-jss";
 
 export function HomeButton() {
-    const classes = useStyles()
+  const classes = useStyles();
   return (
     <div className={classes.homeBtn}>
       {<FontAwesomeIcon icon={faHouse} />}
