@@ -2,6 +2,7 @@ import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
 import { AnswerButton } from "../Components/AnswerButton";
 import { HomeButton } from "../Components/HomeButton";
+import ErrorBoundary from "../ErrorBoundary";
 import { useCategoryColor } from "../hooks/useCategoryColor";
 
 export function QuizPage() {
@@ -40,35 +41,37 @@ export function QuizPage() {
   console.log("categoryName:", categoryName);
 
   return (
-    <div>
-      <h4 className={classes.subjectTitle}>
-        {categoryName}
+    <ErrorBoundary message="button">
+      <div>
+        <h4 className={classes.subjectTitle}>
+          {categoryName}
 
-        <NavLink to="/">
-          <HomeButton />
-        </NavLink>
-      </h4>
-      <div
-        className={classes.questionBox}
-        style={{ backgroundColor: categoryColor.backgroundColor }}
-      >
-        <div>This is where the api inputs will show</div>
+          <NavLink to="/">
+            <HomeButton />
+          </NavLink>
+        </h4>
+        <div
+          className={classes.questionBox}
+          style={{ backgroundColor: categoryColor.backgroundColor }}
+        >
+          <p>This is where the api inputs will show</p>
+        </div>
+        <div className={classes.answerContainer}>
+          <AnswerButton bgColor={categoryColor.backgroundColor}>
+            answer 1
+          </AnswerButton>
+          <AnswerButton bgColor={categoryColor.backgroundColor}>
+            answer 2
+          </AnswerButton>
+          <AnswerButton bgColor={categoryColor.backgroundColor}>
+            answer 3
+          </AnswerButton>
+          <AnswerButton bgColor={categoryColor.backgroundColor}>
+            answer 4
+          </AnswerButton>
+        </div>
       </div>
-      <div className={classes.answerContainer}>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          answer 1
-        </AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          answer 2
-        </AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          answer 3
-        </AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          answer 4
-        </AnswerButton>
-      </div>
-    </div>
+    </ErrorBoundary>
   );
 }
 

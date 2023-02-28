@@ -7,6 +7,7 @@ interface Props {
 
 export function AnswerButton(props: Props) {
   const classes = useStyles();
+
   return (
     <div
       style={{ backgroundColor: props.bgColor }}

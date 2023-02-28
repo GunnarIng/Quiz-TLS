@@ -1,27 +1,28 @@
-import { createUseStyles } from 'react-jss';
-import { Outlet } from 'react-router';
-import { Header } from './Components/Header';
+import { createUseStyles } from "react-jss";
+import { Outlet } from "react-router";
+import { Header } from "./Components/Header";
+import ErrorBoundary from "./ErrorBoundary";
 
 export default function App() {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
-    <div className="App">
-      <Header />
-      <main>
-        <Outlet />
-      </main>
-    </div>
+    <ErrorBoundary message="button">
+      <div className="App">
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+      </div>
+    </ErrorBoundary>
   );
 }
-
 
 const useStyles = createUseStyles({});
 
 // 1. Startsidan visar alla katogorier
-// 2. Vald katogori tar en till QuizBoard och tar och visar komponent som till vald kat. 
-// 3. 
-
+// 2. Vald katogori tar en till QuizBoard och tar och visar komponent som till vald kat.
+// 3.
 
 // const useStyles = createUseStyles({
 //   myH1: {

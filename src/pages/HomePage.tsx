@@ -5,9 +5,9 @@ import ErrorBoundary from "../ErrorBoundary";
 
 export function HomePage() {
   const classes = useStyles();
+  
 
   return (
-    <ErrorBoundary message="button">
       <>
         <div className={classes.rootStyle}>
           <video
@@ -21,7 +21,6 @@ export function HomePage() {
           <Categories />
         </div>
       </>
-    </ErrorBoundary>
   );
 }
 

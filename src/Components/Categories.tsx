@@ -4,6 +4,7 @@ import { Category } from "./Category";
 
 export function Categories() {
   const classes = useStyles();
+  
 
   // Id för api till rätt katogori
   // 1 anrop för katogori
