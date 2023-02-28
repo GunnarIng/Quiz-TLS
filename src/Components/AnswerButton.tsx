@@ -27,6 +27,7 @@ const useStyles = createUseStyles({
     width: "70%",
     margin: "0 auto",
     padding: "1rem",
+    color: "white",
     "&:hover": {
       borderColor: "white",
     },

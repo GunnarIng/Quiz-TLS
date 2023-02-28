@@ -59,12 +59,18 @@ export function QuizPage() {
         <div>This is where the api inputs will show</div>
       </div>
       <div className={classes.answerContainer}>
-        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 1</AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 2</AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 3</AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 4</AnswerButton>
-        
-        
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          answer 1
+        </AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          answer 2
+        </AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          answer 3
+        </AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          answer 4
+        </AnswerButton>
       </div>
     </div>
   );
@@ -87,6 +93,7 @@ const useStyles = createUseStyles({
     margin: "0 auto",
     padding: "1rem",
     height: "300px",
+    color: "white",
   },
   answerContainer: {
     display: "grid",

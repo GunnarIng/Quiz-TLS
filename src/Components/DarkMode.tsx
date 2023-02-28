@@ -8,10 +8,22 @@ type DarkModeProps = {
 export function DarkMode({ mode, toggleMode }: DarkModeProps) {
   const classes = useStyles();
 
+  const handleModeChange = () => {
+    const body = document.getElementsByTagName("body")[0];
+    if (mode === "light") {
+      body.classList.remove("light-mode");
+      body.classList.add("dark-mode");
+    } else {
+      body.classList.remove("dark-mode");
+      body.classList.add("light-mode");
+    }
+    toggleMode();
+  };
+
   return (
     <button
       className={mode === "light" ? classes.lightMode : classes.darkMode}
-      onClick={toggleMode}
+      onClick={handleModeChange}
     >
       {mode === "light" ? "Dark Mode" : "Light Mode"}
     </button>
