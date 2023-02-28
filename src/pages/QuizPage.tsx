@@ -1,28 +1,23 @@
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
 import { AnswerButton } from "../Components/AnswerButton";
 import { useCategoryColor } from "../hooks/useCategoryColor";
+import { useQuiz } from "../hooks/useFetchQuiz";
 
 export function QuizPage() {
   const params = useParams();
   const classes = useStyles();
   const categoryColor = useCategoryColor(params.category);
-  let categoryName;
-
+  const quiz = useQuiz(params.category);
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    fetch("https://opentdb.com/api.php?amount=10&category=11&type=multiple")
-      .then((response) => response.json())
-      .then((result) => {
-        setData(result.results);
-      });
-  }, []);
+  let categoryName;
 
-  // console.log(data[0]);
-
+  // gör med css istället för js med uppercase split och join - till mellanrum
+  console.log("params.category", params.category);
   switch (params.category) {
     case "film":
       categoryName = "Film";
@@ -66,15 +61,21 @@ export function QuizPage() {
         className={classes.questionBox}
         style={{ backgroundColor: categoryColor.backgroundColor }}
       >
-        <div dangerouslySetInnerHTML={{ __html: data[0]?.question }}></div>
+        <div>This is where the api inputs will show</div>
       </div>
       <div className={classes.answerContainer}>
-        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 1</AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 2</AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 3</AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 4</AnswerButton>
-        
-        
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          answer 1
+        </AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          answer 2
+        </AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          answer 3
+        </AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          answer 4
+        </AnswerButton>
       </div>
     </div>
   );
@@ -104,9 +105,7 @@ const useStyles = createUseStyles({
     gap: "1rem",
     margin: "0 auto",
   },
-  answareBox: {
-    border: "1px solid black",
-    borderRadius: "1rem",
+  homeBtn: {
     display: "flex",
     alignItems: "center",
     justifyContent: "right",
