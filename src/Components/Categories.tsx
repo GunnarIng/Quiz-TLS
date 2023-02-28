@@ -5,11 +5,6 @@ import { Category } from "./Category";
 export function Categories() {
   const classes = useStyles();
 
-  // Id för api till rätt katogori
-  // 1 anrop för katogori
-  // 1 anrop för frågor till vald katogori
-  // color prop till 4 svar rutor och frågerutan.
-  // hook för färger: useColorID med switch case
   return (
     <div className={classes.categoriesBoxStyle}>
       <NavLink className={classes.linkStyles} to="film">
@@ -32,7 +27,7 @@ export function Categories() {
           SCIENCE
         </Category>
       </NavLink>
-      <NavLink className={classes.linkStyles} to="general-knowledge">
+      <NavLink className={classes.linkStyles} to="generalknowledge">
         <Category color={"#1A4646"} width={"100%"}>
           GENERAL KNOWLEDGE
         </Category>

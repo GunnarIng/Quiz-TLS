@@ -1,6 +1,5 @@
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
 import { AnswerButton } from "../Components/AnswerButton";
@@ -12,12 +11,8 @@ export function QuizPage() {
   const classes = useStyles();
   const categoryColor = useCategoryColor(params.category);
   const quiz = useQuiz(params.category);
-  const [data, setData] = useState([]);
 
   let categoryName;
-
-  // gör med css istället för js med uppercase split och join - till mellanrum
-  console.log("params.category", params.category);
   switch (params.category) {
     case "film":
       categoryName = "Film";
@@ -31,7 +26,7 @@ export function QuizPage() {
     case "science":
       categoryName = "Science";
       break;
-    case "general-knowledge":
+    case "generalknowledge":
       categoryName = "General Knowledge";
       break;
     case "sport":
@@ -43,7 +38,6 @@ export function QuizPage() {
     default:
       categoryName = "Unknown";
   }
-  console.log("categoryName:", categoryName);
 
   return (
     <div>
