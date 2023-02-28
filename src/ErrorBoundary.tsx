@@ -2,6 +2,7 @@ import { Component, ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
+  message: ReactNode;
 }
 
 interface State {
@@ -20,7 +21,7 @@ class ErrorBoundary extends Component<Props, State> {
 
   render() {
     if (this.state.hasError) {
-      return <h2>Something went wrong</h2>;
+      return <h2>{this.props.message}</h2>;
     }
     return this.props.children;
   }
