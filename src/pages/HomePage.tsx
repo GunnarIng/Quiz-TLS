@@ -8,7 +8,7 @@ export function HomePage() {
   return (
     <>
       <div className={classes.rootStyle}>
-        <video src={video} className={classes.videoStyle} autoPlay muted loop></video>
+        {/* <video src={video} className={classes.videoStyle} autoPlay muted loop></video> */}
         <h2 className={classes.h2Style}>Choose Category</h2>
         <Categories />
       </div>
@@ -38,14 +38,14 @@ const useStyles = createUseStyles({
       fontSize: "2.5rem",
     },
   },
-  videoStyle: {
-    position: "absolute",
-    objectFit: "cover",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    zIndex: "-1",
-    opacity: "0.6",
-  },
+  // videoStyle: {
+  //   position: "absolute",
+  //   objectFit: "cover",
+  //   top: 0,
+  //   left: 0,
+  //   width: "100%",
+  //   height: "100%",
+  //   zIndex: "-1",
+  //   opacity: "0.6",
+  // },
 });
