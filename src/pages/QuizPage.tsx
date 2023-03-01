@@ -43,12 +43,14 @@ export function QuizPage() {
   }
 
 
-  const handleAnswerClick = (answer: string) => {
-    // selectedAnswer(answer);
-    if (answer == quiz[0].correct_answer) {
-      console.log("Snyggt rätt svar!");
-      // currentQuestion = currentQuestion + 1
-    }
+  const handleAnswerClick = () => {
+    console.log("HALÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅ");
+    const correctAnswer = quiz[currentQuestion].correct_answer
+    console.log(quiz[currentQuestion].correct_answer)
+   if (quiz[currentQuestion].correct_answer)   {
+     console.log("RÄTT")
+     currentQuestion++
+   }
   };
   // console.log(quiz[0])
   return (
@@ -76,10 +78,10 @@ export function QuizPage() {
 
       {quiz.length > 0 && (
         <>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>{quiz[0].incorrect_answers[0]}</AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>{quiz[0].incorrect_answers[1]}</AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>{quiz[0].incorrect_answers[2]}</AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>{quiz[0].correct_answer}</AnswerButton>
+        <AnswerButton onClick={handleAnswerClick} bgColor={categoryColor.backgroundColor}>{quiz[currentQuestion].incorrect_answers[0]}</AnswerButton>
+        <AnswerButton onClick={handleAnswerClick} bgColor={categoryColor.backgroundColor}>{quiz[currentQuestion].incorrect_answers[1]}</AnswerButton>
+        <AnswerButton onClick={handleAnswerClick} bgColor={categoryColor.backgroundColor}>{quiz[currentQuestion].correct_answer}</AnswerButton>
+        <AnswerButton onClick={handleAnswerClick} bgColor={categoryColor.backgroundColor}>{quiz[currentQuestion].incorrect_answers[2]}</AnswerButton>
         
         </>
 
