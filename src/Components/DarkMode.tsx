@@ -25,19 +25,19 @@ export function DarkMode({ mode, toggleMode }: DarkModeProps) {
   return (
     <button
       className={`${mode === "light" ? classes.lightMode : classes.darkMode} ${
-        classes.button
+        classes.lightbulbButton
       }`}
       onClick={handleModeChange}
     >
       {mode === "light" ? (
         <>
           <FontAwesomeIcon icon={faLightbulb} />
-          <span>Light</span>
+          <span className={classes.darkModeText}>Dark</span>
         </>
       ) : (
         <>
           <FontAwesomeIcon icon={faLightbulb} />
-          <span>Dark</span>
+          <span className={classes.darkModeText}>Light</span>
         </>
       )}
     </button>
@@ -51,7 +51,6 @@ const useStyles = createUseStyles({
     fontSize: "1rem",
     color: "black",
     cursor: "pointer",
-    textDecoration: "underline",
     "&:hover": {
       fontWeight: "bold",
     },
@@ -62,15 +61,19 @@ const useStyles = createUseStyles({
     fontSize: "1rem",
     color: "white",
     cursor: "pointer",
-    textDecoration: "underline",
     "&:hover": {
       fontWeight: "bold",
     },
   },
-  button: {
-    border: "2px solid grey",
+  lightbulbButton: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    position: "absolute",
+    right: ".5rem",
+    top: ".5rem",
+  },
+  darkModeText: {
+    fontSize: ".5rem",
   },
 });

@@ -24,13 +24,11 @@ export function Category(props: Props) {
 const useStyles = createUseStyles({
   categoryStyle: {
     textAlign: "center",
-    border: "1px solid transparent",
     borderRadius: "1rem",
-    "&:hover":{
-      borderColor: "white",
-      scale: "1.1",    
+    "&:hover": {
+      scale: "1.1",
       transition: "all 0.3s",
-    }
+    },
   },
   categoryTextStyle: {
     padding: "1rem 0",

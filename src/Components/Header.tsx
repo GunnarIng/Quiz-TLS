@@ -15,7 +15,7 @@ export function Header() {
       <div
         className={
           mode === "light"
-            ? classes.headerContainer
+            ? classes.headerContainerLight
             : classes.headerContainerDark
         }
       >
@@ -27,11 +27,11 @@ export function Header() {
 }
 
 const useStyles = createUseStyles({
-  headerContainer: {
+  headerContainerLight: {
     color: "black",
     background: "white",
-    borderBottom: "6px solid gray",
-    height: "85px",
+    borderBottom: "2px solid #3e3a44",
+    height: "5.3rem",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -51,8 +51,8 @@ const useStyles = createUseStyles({
   headerContainerDark: {
     color: "white",
     background: "black",
-    borderBottom: "6px solid gray",
-    height: "85px",
+    borderBottom: "2px solid #3e3a44",
+    height: "5.3rem",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -61,6 +61,7 @@ const useStyles = createUseStyles({
       textAlign: "center",
       fontSize: "1.5rem",
       padding: "1rem 0",
+
       "@media (min-width: 768px)": {
         fontSize: "2rem",
       },

@@ -19,7 +19,6 @@ export function AnswerButton(props: Props) {
 
 const useStyles = createUseStyles({
   answerBox: {
-    border: "1px solid transparent",
     borderRadius: "1rem",
     display: "flex",
     justifyContent: "center",
@@ -29,7 +28,8 @@ const useStyles = createUseStyles({
     padding: "1rem",
     color: "white",
     "&:hover": {
-      borderColor: "white",
+      scale: "1.1",
+      transition: "all 0.3s",
     },
   },
 });

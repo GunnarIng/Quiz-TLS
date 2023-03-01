@@ -8,6 +8,7 @@ export function HomePage() {
     <>
       <div className={classes.rootStyle}>
         <h2 className={classes.h2Style}>Choose Category</h2>
+
         <Categories />
       </div>
     </>
