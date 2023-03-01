@@ -1,8 +1,11 @@
+import { ReactNode } from "react";
 import { createUseStyles } from "react-jss";
 
 interface Props {
   children: string;
   bgColor: string;
+  // handleAnswerClick: () => void;
+  handleAnswerClick: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export function AnswerButton(props: Props) {
@@ -11,6 +14,7 @@ export function AnswerButton(props: Props) {
     <div
       style={{ backgroundColor: props.bgColor }}
       className={classes.answerBox}
+      onClick={props.handleAnswerClick}
     >
       {props.children}
     </div>

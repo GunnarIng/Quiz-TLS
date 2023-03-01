@@ -13,7 +13,7 @@ export function QuizPage() {
   const categoryColor = useCategoryColor(params.category);
   const quiz = useQuiz(params.category);
 
-  const [selectedAnswer, setSelectedAnswer] = useState("");
+  const [selectedAnswer, setSelectedAnswer] = useState([]);
 
   let categoryName;
   switch (params.category) {
@@ -42,10 +42,16 @@ export function QuizPage() {
       categoryName = "Unknown";
   }
 
+  let currentQuestion:number = 0;
+
   const handleAnswerClick = (answer: string) => {
-    setSelectedAnswer(answer);
+    // selectedAnswer(answer);
+    if(answer == quiz[0].correct_answer){
+      console.log("Snyggt rätt svar!")
+      // currentQuestion = currentQuestion + 1
+    }
   };
-  // console.log(quiz[0].correct_answer)
+  // console.log(quiz[0])
   return (
     <div>
       <h4 className={classes.subjectTitle}>
@@ -61,23 +67,17 @@ export function QuizPage() {
         className={classes.questionBox}
         style={{ backgroundColor: categoryColor.backgroundColor }}
       >
-        {quiz.length > 0 && <div>{quiz[0].question}</div>}
+        {quiz.length > 0 && <div>{quiz[currentQuestion].question}</div>}
       </div>
 
       <div className={classes.answerContainer}>
         {quiz.length > 0 && (
           <>
-            {quiz[0].answers.map((answer, index) => (
+            {quiz[0].answers.map((answer) => (
               <AnswerButton
-                key={index}
-                bgColor={
-                  selectedAnswer === answer
-                    ? answer === quiz[0].correct_answer
-                      ? "green"
-                      : "red"
-                    : categoryColor.backgroundColor
-                  }
-                onClick={() => handleAnswerClick(answer)}
+              // key={index}
+              bgColor={categoryColor.backgroundColor}
+              onClick={handleAnswerClick}
               >
                 {answer}
               </AnswerButton>
