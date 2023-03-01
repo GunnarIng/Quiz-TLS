@@ -4,15 +4,15 @@ import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
 import { AnswerButton } from "../Components/AnswerButton";
 import { useCategoryColor } from "../hooks/useCategoryColor";
+import { useQuiz } from "../hooks/useFetchQuiz";
 
 export function QuizPage() {
   const params = useParams();
   const classes = useStyles();
   const categoryColor = useCategoryColor(params.category);
+  const quiz = useQuiz(params.category);
 
   let categoryName;
-
-  console.log("params.category", params.category);
   switch (params.category) {
     case "film":
       categoryName = "Film";
@@ -38,7 +38,6 @@ export function QuizPage() {
     default:
       categoryName = "Unknown";
   }
-  console.log("categoryName:", categoryName);
 
   return (
     <div>
@@ -59,12 +58,18 @@ export function QuizPage() {
         <div>This is where the api inputs will show</div>
       </div>
       <div className={classes.answerContainer}>
-        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 1</AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 2</AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 3</AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}> answer 4</AnswerButton>
-        
-        
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          answer 1
+        </AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          answer 2
+        </AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          answer 3
+        </AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>
+          answer 4
+        </AnswerButton>
       </div>
     </div>
   );
