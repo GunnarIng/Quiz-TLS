@@ -11,6 +11,7 @@ interface Quiz {
   question: string;
   correct_answer: string;
   incorrect_answers: string[];
+  answers: string[];
 }
 
 interface Category {
@@ -33,8 +34,23 @@ export function useQuiz(category: string | undefined) {
             `https://opentdb.com/api.php?amount=10&category=${id}&type=multiple`
             );
           })
-          .then((response) => response.json())
-          .then(({ results }) => setQuizQuestions(results));
-        }, [category]);
-  return quizQuestions;
+//           .then((response) => response.json())
+//           .then(({ results }) => setQuizQuestions(results));
+//         }, [category]);
+//   return quizQuestions;
+// }
+
+.then((response) => response.json())
+.then(({ results }) => {
+  results.forEach((result: Quiz) => {
+    // console.log(results)
+    const answers = [...result.incorrect_answers, result.correct_answer];
+    result.answers = answers.sort(() => Math.random() - 0.5);
+    console.log(result.answers)
+  });
+  setQuizQuestions(results);
+});
+}, [category]);
+
+return quizQuestions;
 }
