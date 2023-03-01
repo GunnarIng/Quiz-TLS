@@ -44,7 +44,7 @@ export function QuizPage() {
   }
 
   const handleAnswerClick = (buttonText: string) => {
-    // console.log(quiz[currentQuestion].correct_answer)
+    console.log(quiz[currentQuestion].correct_answer)
     // const correctAnswer = quiz[currentQuestion].correct_answer
     // console.log(correctAnswer)
     if (quiz[currentQuestion].correct_answer.includes(buttonText)) {
@@ -69,8 +69,9 @@ export function QuizPage() {
         <div
           className={classes.questionBox}
           style={{ backgroundColor: categoryColor.backgroundColor }}
+
         >
-          {quiz[currentQuestion].question}
+          <div dangerouslySetInnerHTML={{ __html: quiz[currentQuestion].question }} />
         </div>
       )}
 
