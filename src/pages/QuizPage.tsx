@@ -1,5 +1,6 @@
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
 import { AnswerButton } from "../Components/AnswerButton";
@@ -11,7 +12,7 @@ export function QuizPage() {
   const classes = useStyles();
   const categoryColor = useCategoryColor(params.category);
   const quiz = useQuiz(params.category);
-  let currentQuestion: number = 0;
+  const [currentQuestion, setcurrentQuestion] = useState(0);
 
   // const [selectedAnswer, setSelectedAnswer] = useState([]);
 
@@ -42,17 +43,16 @@ export function QuizPage() {
       categoryName = "Unknown";
   }
 
-
-  const handleAnswerClick = () => {
-    console.log("HALÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅ");
-    const correctAnswer = quiz[currentQuestion].correct_answer
-    console.log(quiz[currentQuestion].correct_answer)
-   if (quiz[currentQuestion].correct_answer)   {
-     console.log("RÄTT")
-     currentQuestion++
-   }
+  const handleAnswerClick = (buttonText: string) => {
+    // console.log(quiz[currentQuestion].correct_answer)
+    // const correctAnswer = quiz[currentQuestion].correct_answer
+    // console.log(correctAnswer)
+    if (quiz[currentQuestion].correct_answer.includes(buttonText)) {
+      console.log("RÄTT");
+      setcurrentQuestion(() => currentQuestion + 1)
+    }
   };
-  // console.log(quiz[0])
+
   return (
     <div>
       <h4 className={classes.subjectTitle}>
@@ -64,7 +64,7 @@ export function QuizPage() {
           </div>
         </NavLink>
       </h4>
-     
+
       {quiz.length > 0 && (
         <div
           className={classes.questionBox}
@@ -74,19 +74,34 @@ export function QuizPage() {
         </div>
       )}
 
-
-
       {quiz.length > 0 && (
         <>
-        <AnswerButton onClick={handleAnswerClick} bgColor={categoryColor.backgroundColor}>{quiz[currentQuestion].incorrect_answers[0]}</AnswerButton>
-        <AnswerButton onClick={handleAnswerClick} bgColor={categoryColor.backgroundColor}>{quiz[currentQuestion].incorrect_answers[1]}</AnswerButton>
-        <AnswerButton onClick={handleAnswerClick} bgColor={categoryColor.backgroundColor}>{quiz[currentQuestion].correct_answer}</AnswerButton>
-        <AnswerButton onClick={handleAnswerClick} bgColor={categoryColor.backgroundColor}>{quiz[currentQuestion].incorrect_answers[2]}</AnswerButton>
-        
+          <AnswerButton
+            onClick={handleAnswerClick}
+            bgColor={categoryColor.backgroundColor}
+          >
+            {quiz[currentQuestion].incorrect_answers[0]}
+          </AnswerButton>
+          <AnswerButton
+            onClick={handleAnswerClick}
+            bgColor={categoryColor.backgroundColor}
+          >
+            {quiz[currentQuestion].incorrect_answers[1]}
+          </AnswerButton>
+          <AnswerButton
+            onClick={handleAnswerClick}
+            bgColor={categoryColor.backgroundColor}
+          >
+            {quiz[currentQuestion].correct_answer}
+          </AnswerButton>
+          <AnswerButton
+            onClick={handleAnswerClick}
+            bgColor={categoryColor.backgroundColor}
+          >
+            {quiz[currentQuestion].incorrect_answers[2]}
+          </AnswerButton>
         </>
-
       )}
-
     </div>
   );
 }

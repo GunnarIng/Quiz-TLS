@@ -13,8 +13,10 @@ export function AnswerButton(props: Props) {
   const classes = useStyles();
   // const [propValue, setPropValue] = useState("");
 
-  function handleChange() {
-    props.onClick()
+  function handleChange(event:any) {
+    const buttonText = event.target.innerHTML;
+    // console.log(buttonText)
+    props.onClick(buttonText)
   }
 
   return (
