@@ -1,6 +1,5 @@
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
 import { AnswerButton } from "../Components/AnswerButton";
@@ -12,8 +11,9 @@ export function QuizPage() {
   const classes = useStyles();
   const categoryColor = useCategoryColor(params.category);
   const quiz = useQuiz(params.category);
+  let currentQuestion: number = 0;
 
-  const [selectedAnswer, setSelectedAnswer] = useState([]);
+  // const [selectedAnswer, setSelectedAnswer] = useState([]);
 
   let categoryName;
   switch (params.category) {
@@ -42,12 +42,11 @@ export function QuizPage() {
       categoryName = "Unknown";
   }
 
-  let currentQuestion:number = 0;
 
   const handleAnswerClick = (answer: string) => {
     // selectedAnswer(answer);
-    if(answer == quiz[0].correct_answer){
-      console.log("Snyggt rätt svar!")
+    if (answer == quiz[0].correct_answer) {
+      console.log("Snyggt rätt svar!");
       // currentQuestion = currentQuestion + 1
     }
   };
@@ -63,28 +62,29 @@ export function QuizPage() {
           </div>
         </NavLink>
       </h4>
-      <div
-        className={classes.questionBox}
-        style={{ backgroundColor: categoryColor.backgroundColor }}
-      >
-        {quiz.length > 0 && <div>{quiz[currentQuestion].question}</div>}
-      </div>
+     
+      {quiz.length > 0 && (
+        <div
+          className={classes.questionBox}
+          style={{ backgroundColor: categoryColor.backgroundColor }}
+        >
+          {quiz[currentQuestion].question}
+        </div>
+      )}
 
-      <div className={classes.answerContainer}>
-        {quiz.length > 0 && (
-          <>
-            {quiz[0].answers.map((answer) => (
-              <AnswerButton
-              // key={index}
-              bgColor={categoryColor.backgroundColor}
-              onClick={handleAnswerClick}
-              >
-                {answer}
-              </AnswerButton>
-            ))}
-          </>
-        )}
-      </div>
+
+
+      {quiz.length > 0 && (
+        <>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>{quiz[0].incorrect_answers[0]}</AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>{quiz[0].incorrect_answers[1]}</AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>{quiz[0].incorrect_answers[2]}</AnswerButton>
+        <AnswerButton bgColor={categoryColor.backgroundColor}>{quiz[0].correct_answer}</AnswerButton>
+        
+        </>
+
+      )}
+
     </div>
   );
 }
