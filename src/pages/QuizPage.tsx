@@ -1,5 +1,6 @@
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
 import { AnswerButton } from "../Components/AnswerButton";
@@ -11,6 +12,8 @@ export function QuizPage() {
   const classes = useStyles();
   const categoryColor = useCategoryColor(params.category);
   const quiz = useQuiz(params.category);
+
+  const [selectedAnswer, setSelectedAnswer] = useState("");
 
   let categoryName;
   switch (params.category) {
@@ -39,11 +42,14 @@ export function QuizPage() {
       categoryName = "Unknown";
   }
 
+  const handleAnswerClick = (answer: string) => {
+    setSelectedAnswer(answer);
+  };
+  // console.log(quiz[0].correct_answer)
   return (
     <div>
       <h4 className={classes.subjectTitle}>
         {categoryName}
-
         <NavLink to="/">
           <div className={classes.homeBtn}>
             {<FontAwesomeIcon icon={faHouse} />}
@@ -55,21 +61,29 @@ export function QuizPage() {
         className={classes.questionBox}
         style={{ backgroundColor: categoryColor.backgroundColor }}
       >
-        <div>This is where the api inputs will show</div>
+        {quiz.length > 0 && <div>{quiz[0].question}</div>}
       </div>
+
       <div className={classes.answerContainer}>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          answer 1
-        </AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          answer 2
-        </AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          answer 3
-        </AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          answer 4
-        </AnswerButton>
+        {quiz.length > 0 && (
+          <>
+            {quiz[0].answers.map((answer, index) => (
+              <AnswerButton
+                key={index}
+                bgColor={
+                  selectedAnswer === answer
+                    ? answer === quiz[0].correct_answer
+                      ? "green"
+                      : "red"
+                    : categoryColor.backgroundColor
+                  }
+                onClick={() => handleAnswerClick(answer)}
+              >
+                {answer}
+              </AnswerButton>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
