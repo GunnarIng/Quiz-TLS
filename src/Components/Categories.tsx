@@ -27,7 +27,7 @@ export function Categories() {
           SCIENCE
         </Category>
       </NavLink>
-      <NavLink className={classes.linkStyles} to="generalknowledge">
+      <NavLink className={classes.linkStyles} to="general-knowledge">
         <Category color={"#1A4646"} width={"100%"}>
           GENERAL KNOWLEDGE
         </Category>

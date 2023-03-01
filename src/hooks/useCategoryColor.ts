@@ -13,7 +13,7 @@ export function useCategoryColor(category: string | undefined) {
     case "science":
       backgroundColor = "#5E1B69";
       break;
-    case "generalknowledge":
+    case "general-knowledge":
       backgroundColor = "#1A4646";
       break;
     case "sport":

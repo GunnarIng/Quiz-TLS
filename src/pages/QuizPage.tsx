@@ -26,7 +26,7 @@ export function QuizPage() {
     case "science":
       categoryName = "Science";
       break;
-    case "generalknowledge":
+    case "general-knowledge":
       categoryName = "General Knowledge";
       break;
     case "sport":
