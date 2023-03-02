@@ -19,7 +19,7 @@ const useStyles = createUseStyles({
     justifyContent: "right",
     gap: "0.6rem",
     position: "absolute",
-    top: "50%",
+    top: "2rem",
     fontSize: "1.5rem",
     left: "-1.8rem",
     padding: "0.6rem 1.25rem 0.6rem 2.2rem",
@@ -28,6 +28,7 @@ const useStyles = createUseStyles({
     backgroundColor: "#3e3a44",
     textDecoration: "none",
     color: "white",
+    border: "1px solid black",
     "&:hover": {
       color: "#3e3a44",
       background: "white",
