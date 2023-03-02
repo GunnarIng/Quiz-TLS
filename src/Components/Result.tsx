@@ -11,7 +11,7 @@ export function Result(props: Props) {
   const { correctAnswers } = props;
   const classes = useStyles();
   return (
-    <div style={{background: props.color}} className={classes.resultStyle}>
+    <div style={{ background: props.color }} className={classes.resultStyle}>
       <h2>Result</h2>
       <p>You got {correctAnswers} out of 10 questions correct!</p>
     </div>
@@ -23,15 +23,16 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     gap: "4rem",
+    color: "white",
     justifyContent: "center",
     alignItems: "center",
-    padding:"4rem 1rem",
-    textAlign:"center",
-    maxWidth: "75%",
+    padding: "4rem 1rem",
+    textAlign: "center",
+    width: "75%",
     borderRadius: "2rem",
     margin: "0 auto",
     "& h2": {
-        fontSize:"3rem",
-    }
-  }, 
+      fontSize: "3rem",
+    },
+  },
 });
