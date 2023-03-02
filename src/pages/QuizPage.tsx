@@ -47,20 +47,23 @@ export function QuizPage() {
   }
 
   const handleAnswerClick = (buttonText: string) => {
-    const correctAnswer = currentQuestion.correct_answer;
-    console.log(correctAnswer);
-    console.log(buttonText);
+    // const correctAnswer = currentQuestion.correct_answer;
+    
+    const rightAnswer = currentQuestion.correct_answer;
 
     if (currentQuestion.correct_answer.includes(buttonText)) {
       console.log("RÄTT");
       setCurrentQuestionIndex(() => currentQuestionIndex + 1);
+    } else {
+      console.log("FEL");
+      // setCurrentQuestionIndex(() => currentQuestionIndex + 1);
     }
   };
 
   return (
     <div>
       <h4 className={classes.subjectTitle}>
-        {categoryName}
+        {categoryName} {currentQuestionIndex}/10
         <NavLink to="/">
           <div className={classes.homeBtn}>
             {<FontAwesomeIcon icon={faHouse} />}
@@ -68,8 +71,8 @@ export function QuizPage() {
           </div>
         </NavLink>
       </h4>
-
-      {quiz.length > 0 && (
+  
+      {quiz.length > 0 && currentQuestionIndex < 10 && (
         <div
           className={classes.questionBox}
           style={{ backgroundColor: categoryColor.backgroundColor }}
@@ -77,7 +80,7 @@ export function QuizPage() {
           {currentQuestion.question}
         </div>
       )}
-
+  
       {currentQuestion?.answers.map((answer) => (
         <AnswerButton
           key={answer}
@@ -87,6 +90,13 @@ export function QuizPage() {
           {answer}
         </AnswerButton>
       ))}
+      {currentQuestionIndex >= 10 && (
+        <div>
+          <h4>Results</h4>
+          {/* Render your results component here */}
+        </div>
+  
+      )}
     </div>
   );
 }

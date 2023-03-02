@@ -72,6 +72,6 @@ function decode(str: string) {
 function shuffle<T>(array: T[]): T[] {
   const arrayCopy = [...array];
   arrayCopy.sort(() => Math.random() - 0.5);
-  console.log(array, arrayCopy);
+  // console.log(array, arrayCopy);
   return arrayCopy;
 }
