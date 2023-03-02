@@ -7,7 +7,7 @@ export default function App() {
   const classes = useStyles();
 
   return (
-    <ErrorBoundary message="button">
+    <ErrorBoundary message="Something went wrong. Try reload the page.">
       <div className="App">
         <Header />
         <main>

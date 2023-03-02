@@ -40,7 +40,7 @@ export function QuizPage() {
   }
 
   return (
-    <ErrorBoundary message="button">
+    <ErrorBoundary message="Something went wrong. Try reload the page.">
       <div>
         <h4 className={classes.subjectTitle}>
           {categoryName}
@@ -55,7 +55,7 @@ export function QuizPage() {
         >
           <p>This is where the api inputs will show</p>
         </div>
-        <ErrorBoundary message="button">
+        <ErrorBoundary message="Something went wrong. Try reload the page.">
           <div className={classes.answerContainer}>
             <AnswerButton bgColor={categoryColor.backgroundColor}>
               answer 1
