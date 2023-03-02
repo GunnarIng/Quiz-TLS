@@ -1,6 +1,10 @@
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
 import { AnswerButton } from "../Components/AnswerButton";
+import { Result } from "../Components/Result";
 import { HomeButton } from "../Components/HomeButton";
 import ErrorBoundary from "../ErrorBoundary";
 import { useCategoryColor } from "../hooks/useCategoryColor";
@@ -13,41 +17,63 @@ export function QuizPage() {
   const categoryColor = useCategoryColor(params.category);
   const categoryName = useCategoryName(params.category);
   const quiz = useQuiz(params.category);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+
+  // Härlett State
+  const currentQuestion = quiz[currentQuestionIndex];
+
+
+
+  const handleAnswerClick = (buttonText: string) => {
+    const correctAnswer = currentQuestion.correct_answer;
+
+    if (correctAnswer.includes(buttonText)) {
+      console.log("RÄTT");
+      setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
+    } 
+
+    setCurrentQuestionIndex((prevQuestionIndex) => prevQuestionIndex + 1);
+  };
 
   return (
-    <ErrorBoundary message="Something went wrong. Try reload the page.">
-      <div>
-        <h4 className={classes.subjectTitle}>
-          {categoryName}
-
-          <NavLink to="/">
+  <ErrorBoundary message="Something went wrong. Try reload the page.">
+    <div>
+      <h4 className={classes.subjectTitle}>
+        {categoryName} {currentQuestionIndex}/10
+        <NavLink to="/">
             <HomeButton />
           </NavLink>
-        </h4>
+      </h4>
+
+      {quiz.length > 0 && currentQuestionIndex < 10 && (
         <div
           className={classes.questionBox}
           style={{ backgroundColor: categoryColor.backgroundColor }}
         >
-          <p>This is where the api inputs will show</p>
+          {currentQuestion.question}
         </div>
-        <ErrorBoundary message="Something went wrong. Try reload the page.">
-          <div className={classes.answerContainer}>
-            <AnswerButton bgColor={categoryColor.backgroundColor}>
-              answer 1
-            </AnswerButton>
-            <AnswerButton bgColor={categoryColor.backgroundColor}>
-              answer 2
-            </AnswerButton>
-            <AnswerButton bgColor={categoryColor.backgroundColor}>
-              answer 3
-            </AnswerButton>
-            <AnswerButton bgColor={categoryColor.backgroundColor}>
-              answer 4
-            </AnswerButton>
-          </div>
-        </ErrorBoundary>
-      </div>
+      )}
+
+    <ErrorBoundary message="Something went wrong. Try reload the page.">
+      {currentQuestion?.answers.map((answer) => (
+        <AnswerButton
+          key={answer}
+          onClick={handleAnswerClick}
+          bgColor={categoryColor.backgroundColor}
+        >
+          {answer}
+        </AnswerButton>
+      ))}
+       </ErrorBoundary>
+      
+      {/* Render your "Result" component and pass the number of correct answers as a prop */}
+      {currentQuestionIndex >= 10 && (
+        <Result color={categoryColor.backgroundColor} correctAnswers={correctAnswers} />
+      )}
+    </div>
     </ErrorBoundary>
+
   );
 }
 
