@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from "./App";
-import { Result } from "./Components/Result";
+import ErrorBoundary from "./ErrorBoundary";
 import "./index.css";
 import { HomePage } from "./pages/HomePage";
 import { QuizPage } from "./pages/QuizPage";
@@ -16,13 +16,15 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index element={<HomePage />} />
       <Route path=":category" element={<QuizPage />} />
-      <Route path="result" element={<Result />} />
+      // <Route path="result" element={<Result />} />
     </Route>
   )
 );
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   // <React.StrictMode>
-  <RouterProvider router={router} />
+  <ErrorBoundary message={"Something went wrong. Try reload the page."}>
+    <RouterProvider router={router} />
+  </ErrorBoundary>
   // </React.StrictMode>
 );

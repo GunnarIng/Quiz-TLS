@@ -5,13 +5,17 @@ import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
 import { AnswerButton } from "../Components/AnswerButton";
 import { Result } from "../Components/Result";
+import { HomeButton } from "../Components/HomeButton";
+import ErrorBoundary from "../ErrorBoundary";
 import { useCategoryColor } from "../hooks/useCategoryColor";
+import { useCategoryName } from "../hooks/useCategoryName";
 import { useQuiz } from "../hooks/useFetchQuiz";
 
 export function QuizPage() {
   const params = useParams();
   const classes = useStyles();
   const categoryColor = useCategoryColor(params.category);
+  const categoryName = useCategoryName(params.category);
   const quiz = useQuiz(params.category);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
@@ -20,32 +24,6 @@ export function QuizPage() {
   const currentQuestion = quiz[currentQuestionIndex];
 
 
-  let categoryName;
-  switch (params.category) {
-    case "film":
-      categoryName = "Film";
-      break;
-    case "music":
-      categoryName = "Music";
-      break;
-    case "animals":
-      categoryName = "Animals";
-      break;
-    case "science":
-      categoryName = "Science";
-      break;
-    case "general-knowledge":
-      categoryName = "General Knowledge";
-      break;
-    case "sport":
-      categoryName = "Sport";
-      break;
-    case "vehicles":
-      categoryName = "Vehicles";
-      break;
-    default:
-      categoryName = "Unknown";
-  }
 
   const handleAnswerClick = (buttonText: string) => {
     const correctAnswer = currentQuestion.correct_answer;
@@ -59,15 +37,13 @@ export function QuizPage() {
   };
 
   return (
+  <ErrorBoundary message="Something went wrong. Try reload the page.">
     <div>
       <h4 className={classes.subjectTitle}>
         {categoryName} {currentQuestionIndex}/10
         <NavLink to="/">
-          <div className={classes.homeBtn}>
-            {<FontAwesomeIcon icon={faHouse} />}
-            HOME
-          </div>
-        </NavLink>
+            <HomeButton />
+          </NavLink>
       </h4>
 
       {quiz.length > 0 && currentQuestionIndex < 10 && (
@@ -79,6 +55,7 @@ export function QuizPage() {
         </div>
       )}
 
+    <ErrorBoundary message="Something went wrong. Try reload the page.">
       {currentQuestion?.answers.map((answer) => (
         <AnswerButton
           key={answer}
@@ -88,13 +65,15 @@ export function QuizPage() {
           {answer}
         </AnswerButton>
       ))}
+       </ErrorBoundary>
+      
       {/* Render your "Result" component and pass the number of correct answers as a prop */}
       {currentQuestionIndex >= 10 && (
-        
-          <Result color={categoryColor.backgroundColor} correctAnswers={correctAnswers} />
-        
+        <Result color={categoryColor.backgroundColor} correctAnswers={correctAnswers} />
       )}
     </div>
+    </ErrorBoundary>
+
   );
 }
 
@@ -106,7 +85,6 @@ const useStyles = createUseStyles({
     position: "relative",
   },
   questionBox: {
-    border: "1px solid black",
     borderRadius: "1rem",
     display: "grid",
     justifyContent: "center",
@@ -114,33 +92,13 @@ const useStyles = createUseStyles({
     width: "70%",
     margin: "0 auto",
     padding: "1rem",
-    height: "300px",
+    height: "18.75rem",
+    color: "white",
   },
   answerContainer: {
     display: "grid",
     padding: "2rem 0 0 0",
     gap: "1rem",
     margin: "0 auto",
-  },
-  homeBtn: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "right",
-    gap: "0.6rem",
-    position: "absolute",
-    top: "50%",
-    fontSize: "1.5rem",
-    left: "-1.8rem",
-    padding: "0.6rem 1.25rem 0.6rem 2.2rem",
-    borderRadius: "10000rem",
-    transform: "translateY(-50%)",
-    backgroundColor: "#3e3a44",
-    textDecoration: "none",
-    color: "white",
-    "&:hover": {
-      color: "#3e3a44",
-      background: "white",
-      transition: "all 0.3s ease-in-out",
-    },
   },
 });
