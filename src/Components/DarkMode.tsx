@@ -44,6 +44,8 @@ export function DarkMode({ mode, toggleMode }: DarkModeProps) {
   );
 }
 
+// STYLING --------------------------------------------------------------
+
 const useStyles = createUseStyles({
   lightMode: {
     background: "none",

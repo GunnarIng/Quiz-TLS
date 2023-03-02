@@ -1,10 +1,8 @@
 import { createUseStyles } from "react-jss";
 import { Categories } from "../Components/Categories";
-import ErrorBoundary from "../ErrorBoundary";
 
 export function HomePage() {
   const classes = useStyles();
-  
 
   return (
     <>
@@ -16,6 +14,8 @@ export function HomePage() {
     </>
   );
 }
+
+// STYLING --------------------------------------------------------------
 
 const useStyles = createUseStyles({
   rootStyle: {

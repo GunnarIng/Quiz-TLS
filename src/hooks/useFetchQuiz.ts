@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { Category } from "../Components/Category";
 
-//  https://opentdb.com/api_category.php - Returnerar alla kategorier och IDs
-//  https://opentdb.com/api_count.php?category=CATEGORY_ID_HERE - Returnerar antal frågor i en kategori
-
 interface Quiz {
   category: string;
   type: string;
@@ -45,15 +42,19 @@ export function useQuiz(category: string | undefined) {
         results = shuffle(
           results.map((quiz) => {
             const decodedCorrectAnswers = decode(quiz.correct_answer);
-            const decodedIncorrectAnswers =
-                quiz.incorrect_answers.map((ia) => decode(ia));            
+            const decodedIncorrectAnswers = quiz.incorrect_answers.map((ia) =>
+              decode(ia)
+            );
             return {
               ...quiz,
               question: decode(quiz.question),
               correct_answer: decodedCorrectAnswers,
-              incorrect_answers: decodedIncorrectAnswers,            
-              answers: shuffle([...decodedIncorrectAnswers, decodedCorrectAnswers])
-            }
+              incorrect_answers: decodedIncorrectAnswers,
+              answers: shuffle([
+                ...decodedIncorrectAnswers,
+                decodedCorrectAnswers,
+              ]),
+            };
           })
         );
 
@@ -72,6 +73,5 @@ function decode(str: string) {
 function shuffle<T>(array: T[]): T[] {
   const arrayCopy = [...array];
   arrayCopy.sort(() => Math.random() - 0.5);
-  // console.log(array, arrayCopy);
   return arrayCopy;
 }

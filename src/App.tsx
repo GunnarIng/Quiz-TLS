@@ -1,20 +1,19 @@
 import { Outlet } from "react-router";
+import ErrorBoundary from "./Components/ErrorBoundary";
 import { Header } from "./Components/Header";
-import ErrorBoundary from "./ErrorBoundary";
 
 export default function App() {
-  
-
-
   return (
-    <ErrorBoundary message="Something went wrong. Try reload the page.">
-      <div className="App">
+    <div className="App">
+      <ErrorBoundary message="Something went wrong with the header. Try reload the page.">
         <Header />
+      </ErrorBoundary>
+
+      <ErrorBoundary message="Something went wrong with the current page. Try reload the page.">
         <main>
           <Outlet />
         </main>
-      </div>
-    </ErrorBoundary>
+      </ErrorBoundary>
+    </div>
   );
 }
-
