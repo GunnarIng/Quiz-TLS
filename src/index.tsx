@@ -6,10 +6,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from "./App";
+import { Result } from "./Components/Result";
 import "./index.css";
 import { HomePage } from "./pages/HomePage";
 import { QuizPage } from "./pages/QuizPage";
-import { Result } from "./pages/Result";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
 import { AnswerButton } from "../Components/AnswerButton";
+import { Result } from "../Components/Result";
 import { useCategoryColor } from "../hooks/useCategoryColor";
 import { useQuiz } from "../hooks/useFetchQuiz";
 
@@ -13,11 +14,11 @@ export function QuizPage() {
   const categoryColor = useCategoryColor(params.category);
   const quiz = useQuiz(params.category);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
 
   // Härlett State
   const currentQuestion = quiz[currentQuestionIndex];
 
-  // const [selectedAnswer, setSelectedAnswer] = useState([]);
 
   let categoryName;
   switch (params.category) {
@@ -47,17 +48,14 @@ export function QuizPage() {
   }
 
   const handleAnswerClick = (buttonText: string) => {
-    // const correctAnswer = currentQuestion.correct_answer;
-    
-    const rightAnswer = currentQuestion.correct_answer;
+    const correctAnswer = currentQuestion.correct_answer;
 
-    if (currentQuestion.correct_answer.includes(buttonText)) {
+    if (correctAnswer.includes(buttonText)) {
       console.log("RÄTT");
-      setCurrentQuestionIndex(() => currentQuestionIndex + 1);
-    } else {
-      console.log("FEL");
-      // setCurrentQuestionIndex(() => currentQuestionIndex + 1);
-    }
+      setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
+    } 
+
+    setCurrentQuestionIndex((prevQuestionIndex) => prevQuestionIndex + 1);
   };
 
   return (
@@ -71,7 +69,7 @@ export function QuizPage() {
           </div>
         </NavLink>
       </h4>
-  
+
       {quiz.length > 0 && currentQuestionIndex < 10 && (
         <div
           className={classes.questionBox}
@@ -80,7 +78,7 @@ export function QuizPage() {
           {currentQuestion.question}
         </div>
       )}
-  
+
       {currentQuestion?.answers.map((answer) => (
         <AnswerButton
           key={answer}
@@ -90,12 +88,11 @@ export function QuizPage() {
           {answer}
         </AnswerButton>
       ))}
+      {/* Render your "Result" component and pass the number of correct answers as a prop */}
       {currentQuestionIndex >= 10 && (
         <div>
-          <h4>Results</h4>
-          {/* Render your results component here */}
+          <Result correctAnswers={correctAnswers} />
         </div>
-  
       )}
     </div>
   );
