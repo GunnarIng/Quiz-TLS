@@ -45,15 +45,19 @@ export function useQuiz(category: string | undefined) {
         results = shuffle(
           results.map((quiz) => {
             const decodedCorrectAnswers = decode(quiz.correct_answer);
-            const decodedIncorrectAnswers =
-                quiz.incorrect_answers.map((ia) => decode(ia));            
+            const decodedIncorrectAnswers = quiz.incorrect_answers.map((ia) =>
+              decode(ia)
+            );
             return {
               ...quiz,
               question: decode(quiz.question),
               correct_answer: decodedCorrectAnswers,
-              incorrect_answers: decodedIncorrectAnswers,            
-              answers: shuffle([...decodedIncorrectAnswers, decodedCorrectAnswers])
-            }
+              incorrect_answers: decodedIncorrectAnswers,
+              answers: shuffle([
+                ...decodedIncorrectAnswers,
+                decodedCorrectAnswers,
+              ]),
+            };
           })
         );
 

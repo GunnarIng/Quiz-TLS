@@ -10,7 +10,7 @@ export function Category(props: Props) {
   const classes = useStyles();
   const BGcolorStyle = { backgroundColor: props.color };
   const categoryWidth = { width: props.width };
-  
+
   return (
     <div
       className={classes.categoryStyle}
