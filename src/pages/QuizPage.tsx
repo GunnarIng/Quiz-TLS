@@ -12,7 +12,10 @@ export function QuizPage() {
   const classes = useStyles();
   const categoryColor = useCategoryColor(params.category);
   const quiz = useQuiz(params.category);
-  const [currentQuestion, setcurrentQuestion] = useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  // Härlett State
+  const currentQuestion = quiz[currentQuestionIndex];
 
   // const [selectedAnswer, setSelectedAnswer] = useState([]);
 
@@ -44,12 +47,13 @@ export function QuizPage() {
   }
 
   const handleAnswerClick = (buttonText: string) => {
-    console.log(quiz[currentQuestion].correct_answer)
-    // const correctAnswer = quiz[currentQuestion].correct_answer
-    // console.log(correctAnswer)
-    if (quiz[currentQuestion].correct_answer.includes(buttonText)) {
+    const correctAnswer = currentQuestion.correct_answer;
+    console.log(correctAnswer);
+    console.log(buttonText);
+
+    if (currentQuestion.correct_answer.includes(buttonText)) {
       console.log("RÄTT");
-      setcurrentQuestion(() => currentQuestion + 1)
+      setCurrentQuestionIndex(() => currentQuestionIndex + 1);
     }
   };
 
@@ -69,40 +73,20 @@ export function QuizPage() {
         <div
           className={classes.questionBox}
           style={{ backgroundColor: categoryColor.backgroundColor }}
-
         >
-          <div dangerouslySetInnerHTML={{ __html: quiz[currentQuestion].question }} />
+          {currentQuestion.question}
         </div>
       )}
 
-      {quiz.length > 0 && (
-        <>
-          <AnswerButton
-            onClick={handleAnswerClick}
-            bgColor={categoryColor.backgroundColor}
-          >
-            {quiz[currentQuestion].incorrect_answers[0]}
-          </AnswerButton>
-          <AnswerButton
-            onClick={handleAnswerClick}
-            bgColor={categoryColor.backgroundColor}
-          >
-            {quiz[currentQuestion].incorrect_answers[1]}
-          </AnswerButton>
-          <AnswerButton
-            onClick={handleAnswerClick}
-            bgColor={categoryColor.backgroundColor}
-          >
-            {quiz[currentQuestion].correct_answer}
-          </AnswerButton>
-          <AnswerButton
-            onClick={handleAnswerClick}
-            bgColor={categoryColor.backgroundColor}
-          >
-            {quiz[currentQuestion].incorrect_answers[2]}
-          </AnswerButton>
-        </>
-      )}
+      {currentQuestion?.answers.map((answer) => (
+        <AnswerButton
+          key={answer}
+          onClick={handleAnswerClick}
+          bgColor={categoryColor.backgroundColor}
+        >
+          {answer}
+        </AnswerButton>
+      ))}
     </div>
   );
 }

@@ -1,10 +1,9 @@
-import { useState } from "react";
 import { createUseStyles } from "react-jss";
 
 interface Props {
   children: string;
   bgColor: string;
-  onClick: any;
+  onClick: (answer: string) => void;
   // onClick: ;
   // handleAnswerClick: () => void;
 }
@@ -13,10 +12,8 @@ export function AnswerButton(props: Props) {
   const classes = useStyles();
   // const [propValue, setPropValue] = useState("");
 
-  function handleChange(event:any) {
-    const buttonText = event.target.innerHTML;
-    // console.log(buttonText)
-    props.onClick(buttonText)
+  function handleChange() {
+    props.onClick(props.children);
   }
 
   return (

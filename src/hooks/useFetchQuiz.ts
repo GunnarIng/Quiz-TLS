@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Category } from "../Components/Category";
 
 //  https://opentdb.com/api_category.php - Returnerar alla kategorier och IDs
@@ -28,29 +28,50 @@ export function useQuiz(category: string | undefined) {
       .then(({ trivia_categories }) => {
         const { id } = trivia_categories.find(
           (categoryObjekt: Category) =>
-          category && categoryObjekt.name.toLowerCase().split(" ").join("-").includes(category) === true
-          );
-          return fetch(
-            `https://opentdb.com/api.php?amount=10&category=${id}&type=multiple`
-            );
+            category &&
+            categoryObjekt.name
+              .toLowerCase()
+              .split(" ")
+              .join("-")
+              .includes(category) === true
+        );
+        return fetch(
+          `https://opentdb.com/api.php?amount=10&category=${id}&type=multiple`
+        );
+      })
+      .then((response) => response.json())
+      .then((result) => {
+        let results: Quiz[] = result.results;
+        results = shuffle(
+          results.map((quiz) => {
+            const decodedCorrectAnswers = decode(quiz.correct_answer);
+            const decodedIncorrectAnswers =
+                quiz.incorrect_answers.map((ia) => decode(ia));            
+            return {
+              ...quiz,
+              question: decode(quiz.question),
+              correct_answer: decodedCorrectAnswers,
+              incorrect_answers: decodedIncorrectAnswers,            
+              answers: shuffle([...decodedIncorrectAnswers, decodedCorrectAnswers])
+            }
           })
-          .then((response) => response.json())
-          .then(({ results }) => setQuizQuestions(results));
-        }, [category]);
+        );
+
+        setQuizQuestions(results);
+      });
+  }, [category]);
   return quizQuestions;
 }
 
-// .then((response) => response.json())
-// .then(({ results }) => {
-//   results.forEach((result: Quiz) => {
-//     // console.log(results)
-//     const answers = [...result.incorrect_answers, result.correct_answer];
-//     result.answers = answers.sort(() => Math.random() - 0.5);
-//     console.log(result.answers)
-//   });
-//   setQuizQuestions(results);
-// });
-// }, [category]);
+function decode(str: string) {
+  const decodedString = document.createElement("textarea");
+  decodedString.innerHTML = str;
+  return decodedString.value;
+}
 
-// return quizQuestions;
-// }
+function shuffle<T>(array: T[]): T[] {
+  const arrayCopy = [...array];
+  arrayCopy.sort(() => Math.random() - 0.5);
+  console.log(array, arrayCopy);
+  return arrayCopy;
+}
