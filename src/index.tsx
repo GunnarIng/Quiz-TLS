@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from "./App";
+import ErrorBoundary from "./ErrorBoundary";
 import "./index.css";
 import { HomePage } from "./pages/HomePage";
 import { QuizPage } from "./pages/QuizPage";
@@ -23,6 +24,8 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   // <React.StrictMode>
-  <RouterProvider router={router} />
+  <ErrorBoundary message={"Something went wrong. Try reload the page."}>
+    <RouterProvider router={router} />
+  </ErrorBoundary>
   // </React.StrictMode>
 );

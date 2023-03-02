@@ -1,8 +1,8 @@
-import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
 import { AnswerButton } from "../Components/AnswerButton";
+import { HomeButton } from "../Components/HomeButton";
+import ErrorBoundary from "../ErrorBoundary";
 import { useCategoryColor } from "../hooks/useCategoryColor";
 import { useCategoryName } from "../hooks/useCategoryName";
 import { useQuiz } from "../hooks/useFetchQuiz";
@@ -15,38 +15,39 @@ export function QuizPage() {
   const quiz = useQuiz(params.category);
 
   return (
-    <div>
-      <h4 className={classes.subjectTitle}>
-        {categoryName}
+    <ErrorBoundary message="Something went wrong. Try reload the page.">
+      <div>
+        <h4 className={classes.subjectTitle}>
+          {categoryName}
 
-        <NavLink to="/">
-          <div className={classes.homeBtn}>
-            {<FontAwesomeIcon icon={faHouse} />}
-            HOME
+          <NavLink to="/">
+            <HomeButton />
+          </NavLink>
+        </h4>
+        <div
+          className={classes.questionBox}
+          style={{ backgroundColor: categoryColor.backgroundColor }}
+        >
+          <p>This is where the api inputs will show</p>
+        </div>
+        <ErrorBoundary message="Something went wrong. Try reload the page.">
+          <div className={classes.answerContainer}>
+            <AnswerButton bgColor={categoryColor.backgroundColor}>
+              answer 1
+            </AnswerButton>
+            <AnswerButton bgColor={categoryColor.backgroundColor}>
+              answer 2
+            </AnswerButton>
+            <AnswerButton bgColor={categoryColor.backgroundColor}>
+              answer 3
+            </AnswerButton>
+            <AnswerButton bgColor={categoryColor.backgroundColor}>
+              answer 4
+            </AnswerButton>
           </div>
-        </NavLink>
-      </h4>
-      <div
-        className={classes.questionBox}
-        style={{ backgroundColor: categoryColor.backgroundColor }}
-      >
-        <div>This is where the api inputs will show</div>
+        </ErrorBoundary>
       </div>
-      <div className={classes.answerContainer}>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          answer 1
-        </AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          answer 2
-        </AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          answer 3
-        </AnswerButton>
-        <AnswerButton bgColor={categoryColor.backgroundColor}>
-          answer 4
-        </AnswerButton>
-      </div>
-    </div>
+    </ErrorBoundary>
   );
 }
 
@@ -73,26 +74,5 @@ const useStyles = createUseStyles({
     padding: "2rem 0 0 0",
     gap: "1rem",
     margin: "0 auto",
-  },
-  homeBtn: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "right",
-    gap: "0.6rem",
-    position: "absolute",
-    top: "50%",
-    fontSize: "1.5rem",
-    left: "-1.8rem",
-    padding: "0.6rem 1.25rem 0.6rem 2.2rem",
-    borderRadius: "10000rem",
-    transform: "translateY(-50%)",
-    backgroundColor: "#3e3a44",
-    textDecoration: "none",
-    color: "white",
-    "&:hover": {
-      color: "#3e3a44",
-      background: "white",
-      transition: "all 0.3s ease-in-out",
-    },
   },
 });
