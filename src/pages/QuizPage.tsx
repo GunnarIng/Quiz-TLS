@@ -4,40 +4,15 @@ import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
 import { AnswerButton } from "../Components/AnswerButton";
 import { useCategoryColor } from "../hooks/useCategoryColor";
+import { useCategoryName } from "../hooks/useCategoryName";
 import { useQuiz } from "../hooks/useFetchQuiz";
 
 export function QuizPage() {
   const params = useParams();
   const classes = useStyles();
   const categoryColor = useCategoryColor(params.category);
+  const categoryName = useCategoryName(params.category);
   const quiz = useQuiz(params.category);
-
-  let categoryName;
-  switch (params.category) {
-    case "film":
-      categoryName = "Film";
-      break;
-    case "music":
-      categoryName = "Music";
-      break;
-    case "animals":
-      categoryName = "Animals";
-      break;
-    case "science":
-      categoryName = "Science";
-      break;
-    case "general-knowledge":
-      categoryName = "General Knowledge";
-      break;
-    case "sport":
-      categoryName = "Sport";
-      break;
-    case "vehicles":
-      categoryName = "Vehicles";
-      break;
-    default:
-      categoryName = "Unknown";
-  }
 
   return (
     <div>
