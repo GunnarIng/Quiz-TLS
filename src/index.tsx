@@ -23,7 +23,7 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>
-    <ErrorBoundary message={"Something went wrong. Try reload the page."}>
+    <ErrorBoundary message={"Error from index"}>
       <RouterProvider router={router} />
     </ErrorBoundary>
   </StrictMode>

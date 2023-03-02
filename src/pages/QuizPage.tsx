@@ -29,55 +29,53 @@ export function QuizPage() {
   };
 
   return (
-    <ErrorBoundary message="Something went wrong. Try reload the page.">
-      <div className={classes.rootContainer}>
-        <NavLink to="/">
-          <HomeButton />
-        </NavLink>
+    <div className={classes.rootContainer}>
+      <NavLink to="/">
+        <HomeButton />
+      </NavLink>
 
-        {quiz.length > 0 && currentQuestionIndex < 10 && (
-          <h4 className={classes.subjectTitle}>
-            {categoryName} {currentQuestionIndex + 1}/{10}
-          </h4>
-        )}
-        {/* QUESTION BOX -------------
+      {quiz.length > 0 && currentQuestionIndex < 10 && (
+        <h4 className={classes.subjectTitle}>
+          {categoryName} {currentQuestionIndex + 1}/{10}
+        </h4>
+      )}
+      {/* QUESTION BOX -------------
         ------------------------------
         ------------------------------ */}
-        {quiz.length > 0 && currentQuestionIndex < 10 && (
-          <div
-            className={classes.questionBox}
-            style={{ backgroundColor: categoryColor.backgroundColor }}
-          >
-            {currentQuestion.question}
-          </div>
-        )}
+      {quiz.length > 0 && currentQuestionIndex < 10 && (
+        <div
+          className={classes.questionBox}
+          style={{ backgroundColor: categoryColor.backgroundColor }}
+        >
+          {currentQuestion.question}
+        </div>
+      )}
 
-        {/* ANSWERS ---------------
+      {/* ANSWERS ---------------
         ---------------------------
         --------------------------- */}
-        <ErrorBoundary message="Something went wrong. Try reload the page.">
-          {currentQuestion?.answers.map((answer) => (
-            <AnswerButton
-              key={answer}
-              onClick={handleAnswerClick}
-              bgColor={categoryColor.backgroundColor}
-            >
-              {answer}
-            </AnswerButton>
-          ))}
-        </ErrorBoundary>
+      <ErrorBoundary message="Something went wrong with the answers. Try reload the page.">
+        {currentQuestion?.answers.map((answer) => (
+          <AnswerButton
+            key={answer}
+            onClick={handleAnswerClick}
+            bgColor={categoryColor.backgroundColor}
+          >
+            {answer}
+          </AnswerButton>
+        ))}
+      </ErrorBoundary>
 
-        {/* RESULT -------------------
+      {/* RESULT -------------------
         ------------------------------
         ------------------------------ */}
-        {currentQuestionIndex >= 10 && (
-          <Result
-            color={categoryColor.backgroundColor}
-            correctAnswers={correctAnswers}
-          />
-        )}
-      </div>
-    </ErrorBoundary>
+      {currentQuestionIndex >= 10 && (
+        <Result
+          color={categoryColor.backgroundColor}
+          correctAnswers={correctAnswers}
+        />
+      )}
+    </div>
   );
 }
 
