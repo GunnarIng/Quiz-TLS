@@ -90,9 +90,9 @@ export function QuizPage() {
       ))}
       {/* Render your "Result" component and pass the number of correct answers as a prop */}
       {currentQuestionIndex >= 10 && (
-        <div>
-          <Result correctAnswers={correctAnswers} />
-        </div>
+        
+          <Result color={categoryColor.backgroundColor} correctAnswers={correctAnswers} />
+        
       )}
     </div>
   );

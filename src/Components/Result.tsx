@@ -1,19 +1,37 @@
-import React from "react";
-
+import { createUseStyles } from "react-jss";
 
 // Fix so that the type of the props is correct
 interface Props {
-    correctAnswers: number;
+  correctAnswers: number;
+  color: string;
 }
-   
 
 // Take the correctAnswers prop and display it in the Result component
 export function Result(props: Props) {
-    const { correctAnswers } = props;
-    return (
-        <div>
-            <h1>Result</h1>
-            <p>You got {correctAnswers} out of 10 questions correct!</p>
-        </div>
-    )
+  const { correctAnswers } = props;
+  const classes = useStyles();
+  return (
+    <div style={{background: props.color}} className={classes.resultStyle}>
+      <h2>Result</h2>
+      <p>You got {correctAnswers} out of 10 questions correct!</p>
+    </div>
+  );
 }
+
+const useStyles = createUseStyles({
+  resultStyle: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "4rem",
+    justifyContent: "center",
+    alignItems: "center",
+    padding:"4rem 1rem",
+    textAlign:"center",
+    maxWidth: "75%",
+    borderRadius: "2rem",
+    margin: "0 auto",
+    "& h2": {
+        fontSize:"3rem",
+    }
+  }, 
+});
