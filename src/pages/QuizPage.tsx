@@ -38,7 +38,6 @@ export function QuizPage() {
     default:
       categoryName = "Unknown";
   }
-  console.log("categoryName:", categoryName);
 
   return (
     <ErrorBoundary message="button">
@@ -56,20 +55,22 @@ export function QuizPage() {
         >
           <p>This is where the api inputs will show</p>
         </div>
-        <div className={classes.answerContainer}>
-          <AnswerButton bgColor={categoryColor.backgroundColor}>
-            answer 1
-          </AnswerButton>
-          <AnswerButton bgColor={categoryColor.backgroundColor}>
-            answer 2
-          </AnswerButton>
-          <AnswerButton bgColor={categoryColor.backgroundColor}>
-            answer 3
-          </AnswerButton>
-          <AnswerButton bgColor={categoryColor.backgroundColor}>
-            answer 4
-          </AnswerButton>
-        </div>
+        <ErrorBoundary message="button">
+          <div className={classes.answerContainer}>
+            <AnswerButton bgColor={categoryColor.backgroundColor}>
+              answer 1
+            </AnswerButton>
+            <AnswerButton bgColor={categoryColor.backgroundColor}>
+              answer 2
+            </AnswerButton>
+            <AnswerButton bgColor={categoryColor.backgroundColor}>
+              answer 3
+            </AnswerButton>
+            <AnswerButton bgColor={categoryColor.backgroundColor}>
+              answer 4
+            </AnswerButton>
+          </div>
+        </ErrorBoundary>
       </div>
     </ErrorBoundary>
   );
