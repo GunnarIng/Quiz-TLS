@@ -83,7 +83,6 @@ const useStyles = createUseStyles({
     position: "relative",
   },
   questionBox: {
-    border: "1px solid black",
     borderRadius: "1rem",
     display: "grid",
     justifyContent: "center",
@@ -91,7 +90,8 @@ const useStyles = createUseStyles({
     width: "70%",
     margin: "0 auto",
     padding: "1rem",
-    height: "300px",
+    height: "18.75rem",
+    color: "white",
   },
   answerContainer: {
     display: "grid",

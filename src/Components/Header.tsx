@@ -1,12 +1,26 @@
+import classnames from "classnames";
+import { useState } from "react";
 import { createUseStyles } from "react-jss";
+import { DarkMode } from "./DarkMode";
 
 export function Header() {
   const classes = useStyles();
+  const [mode, setMode] = useState("light");
+
+  const toggleMode = () => {
+    setMode(mode === "light" ? "dark" : "light");
+  };
 
   return (
     <>
-      <div className={classes.headerContainer}>
+      <div
+        className={classnames(
+          classes.headerContainer,
+          mode === "light" ? classes.light : classes.dark
+        )}
+      >
         <h1>The Quizie-Quiz Game</h1>
+        <DarkMode mode={mode} toggleMode={toggleMode} />
       </div>
     </>
   );
@@ -14,10 +28,7 @@ export function Header() {
 
 const useStyles = createUseStyles({
   headerContainer: {
-    color:"black",
-    background: "whitesmoke",
-    borderBottom: "6px solid gray",
-    height: "85px",
+    height: "5.3rem",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -33,5 +44,16 @@ const useStyles = createUseStyles({
         fontSize: "3rem",
       },
     },
+  },
+
+  light: {
+    color: "black",
+    background: "white",
+    borderBottom: "2px solid #3e3a44",
+  },
+  dark: {
+    color: "white",
+    background: "black",
+    borderBottom: "2px solid #3e3a44",
   },
 });
