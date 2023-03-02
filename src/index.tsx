@@ -15,15 +15,15 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<HomePage />} />
-      <Route path=":category" element={<QuizPage />} />    
+      <Route path=":category" element={<QuizPage />} />
     </Route>
   )
 );
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   // <React.StrictMode>
-    <ErrorBoundary message={"Something went wrong. Try reload the page."}>
-  <RouterProvider router={router} />
+  <ErrorBoundary message={"Something went wrong. Try reload the page."}>
+    <RouterProvider router={router} />
   </ErrorBoundary>
   // </React.StrictMode>
 );
