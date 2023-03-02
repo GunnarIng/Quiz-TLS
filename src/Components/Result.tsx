@@ -32,7 +32,7 @@ const useStyles = createUseStyles({
     textAlign: "center",
     width: "75%",
     borderRadius: "2rem",
-    margin: "0 auto",
+    margin: "5rem auto",
     "& h2": {
       fontSize: "3rem",
     },

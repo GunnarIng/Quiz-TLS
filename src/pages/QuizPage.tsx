@@ -2,9 +2,9 @@ import { useState } from "react";
 import { createUseStyles } from "react-jss";
 import { NavLink, useParams } from "react-router-dom";
 import { AnswerButton } from "../Components/AnswerButton";
+import ErrorBoundary from "../Components/ErrorBoundary";
 import { HomeButton } from "../Components/HomeButton";
 import { Result } from "../Components/Result";
-import ErrorBoundary from "../ErrorBoundary";
 import { useCategoryColor } from "../hooks/useCategoryColor";
 import { useCategoryName } from "../hooks/useCategoryName";
 import { useQuiz } from "../hooks/useFetchQuiz";
@@ -17,31 +17,32 @@ export function QuizPage() {
   const quiz = useQuiz(params.category);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-
-  // Härlett State
   const currentQuestion = quiz[currentQuestionIndex];
 
+  // Changes to next question and if you click right answer points add up.
   const handleAnswerClick = (buttonText: string) => {
     const correctAnswer = currentQuestion.correct_answer;
-
     if (correctAnswer.includes(buttonText)) {
-      console.log("RÄTT");
       setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
     }
-
     setCurrentQuestionIndex((prevQuestionIndex) => prevQuestionIndex + 1);
   };
 
   return (
     <ErrorBoundary message="Something went wrong. Try reload the page.">
       <div className={classes.rootContainer}>
-        <h4 className={classes.subjectTitle}>
-          {categoryName} {currentQuestionIndex}/10
-          <NavLink to="/">
-            <HomeButton />
-          </NavLink>
-        </h4>
+        <NavLink to="/">
+          <HomeButton />
+        </NavLink>
 
+        {quiz.length > 0 && currentQuestionIndex < 10 && (
+          <h4 className={classes.subjectTitle}>
+            {categoryName} {currentQuestionIndex + 1}/{10}
+          </h4>
+        )}
+        {/* QUESTION BOX -------------
+        ------------------------------
+        ------------------------------ */}
         {quiz.length > 0 && currentQuestionIndex < 10 && (
           <div
             className={classes.questionBox}
@@ -51,6 +52,9 @@ export function QuizPage() {
           </div>
         )}
 
+        {/* ANSWERS ---------------
+        ---------------------------
+        --------------------------- */}
         <ErrorBoundary message="Something went wrong. Try reload the page.">
           {currentQuestion?.answers.map((answer) => (
             <AnswerButton
@@ -63,7 +67,9 @@ export function QuizPage() {
           ))}
         </ErrorBoundary>
 
-        {/* Render your "Result" component and pass the number of correct answers as a prop */}
+        {/* RESULT -------------------
+        ------------------------------
+        ------------------------------ */}
         {currentQuestionIndex >= 10 && (
           <Result
             color={categoryColor.backgroundColor}
@@ -91,9 +97,9 @@ const useStyles = createUseStyles({
     alignItems: "center",
     width: "70%",
     margin: "0 auto",
-    // height: "18.75rem",
+    height: "13rem",
     color: "white",
-    padding: "3rem 1rem",
+    padding: "1rem",
     "@media (min-width: 768px)": {
       padding: "6rem 6rem",
     },

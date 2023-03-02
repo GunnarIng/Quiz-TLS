@@ -1,7 +1,7 @@
 import { createUseStyles } from "react-jss";
 import { NavLink } from "react-router-dom";
-import ErrorBoundary from "../ErrorBoundary";
 import { Category } from "./Category";
+import ErrorBoundary from "./ErrorBoundary";
 
 export function Categories() {
   const classes = useStyles();

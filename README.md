@@ -2,9 +2,10 @@
 
 ## Uppgiftsbeskrivning
 
-Vi har i denna skoluppgift byggt vår första app med hjälp av React. Denna app är bestående av ett quiz som vi hämtar ned via ett API.
+Vi har i denna skoluppgift byggt vår första webbapplikation med hjälp av React och JSS. Denna webbapplikation är bestående av ett quiz som vi hämtar ned via ett API.
 
-En länk till vår app hittar ni här:
+
+En länk till vår webbapplikation hittar ni här:
 [The Quizie-Quiz Game](https://quizie-quiz.netlify.app/)
 
 ## Installation & Utveckling
@@ -13,8 +14,6 @@ En länk till vår app hittar ni här:
 2. `npm i`
 3. `npm run dev`
 
-Projektet innehåller ikoner från Font Awesome. Nedan hittar ni en länk för att kunna köra Font Awesome i React:
-(https://fontawesome.com/docs/web/use-with/react/)
 
 ## Skapat av
 
@@ -24,16 +23,16 @@ Linus Hernvall [GitHub](https://github.com/linusHernvall)
 
 ### Krav för Godkänt:
 
-- [] Projektet innehåller och använder minst 8 stycken komponenter varav minst 3 stycken är “statefulla"-komponenter. <br>
+- [x] Projektet innehåller och använder minst 8 stycken komponenter varav minst 3 stycken är “statefulla"-komponenter. <br>
 - [x] React Router har använts för att dynamiskt uppdatera URL’en. <br>
 - [x] Git & GitHub har använts. <br>
 - [x] Projektmappen innehåller en README.md-fil.<br>
-- [] Uppgiften lämnas in i tid! <br>
-- [] Muntlig presentation är genomförd.
+- [x] Uppgiften lämnas in i tid! <br>
+- [x] Muntlig presentation är genomförd.
 
 ### Krav för Väl Godkänt:
 
-- [] Alla punkter för godkänt är uppfyllda. <br>
+- [x] Alla punkter för godkänt är uppfyllda. <br>
 - [x] Ett “CSS i JS“ lib skall användas för at skriva CSS (ex JSS, Styled-Components, mm). <br>
-- [] En ”ErrorBoundry”- komponent ska skapas och användas på minst 3 ställen. <br>
-- [] Data från ett web-API hämtas och visas på sidan.
+- [x] En ”ErrorBoundry”- komponent ska skapas och användas på minst 3 ställen. <br>
+- [x] Data från ett web-API hämtas och visas på sidan.
