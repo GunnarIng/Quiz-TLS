@@ -6,11 +6,6 @@ import { Category } from "./Category";
 export function Categories() {
   const classes = useStyles();
 
-  // Id för api till rätt katogori
-  // 1 anrop för katogori
-  // 1 anrop för frågor till vald katogori
-  // color prop till 4 svar rutor och frågerutan.
-  // hook för färger: useColorID med switch case
   return (
     <ErrorBoundary message="Something went wrong. Try reload the page.">
       <div className={classes.categoriesBoxStyle}>

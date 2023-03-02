@@ -1,5 +1,4 @@
 import { createUseStyles } from "react-jss";
-import video from "../assets/water.mp4";
 import { Categories } from "../Components/Categories";
 import ErrorBoundary from "../ErrorBoundary";
 
@@ -8,19 +7,13 @@ export function HomePage() {
   
 
   return (
-      <>
-        <div className={classes.rootStyle}>
-          <video
-            src={video}
-            className={classes.videoStyle}
-            autoPlay
-            muted
-            loop
-          ></video>
-          <h2 className={classes.h2Style}>Choose Category</h2>
-          <Categories />
-        </div>
-      </>
+    <>
+      <div className={classes.rootStyle}>
+        <h2 className={classes.h2Style}>Choose Category</h2>
+
+        <Categories />
+      </div>
+    </>
   );
 }
 
@@ -45,15 +38,5 @@ const useStyles = createUseStyles({
     "@media (min-width: 1024px)": {
       fontSize: "2.5rem",
     },
-  },
-  videoStyle: {
-    position: "absolute",
-    objectFit: "cover",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    zIndex: "-1",
-    opacity: "0.6",
   },
 });

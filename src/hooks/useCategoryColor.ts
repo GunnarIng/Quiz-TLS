@@ -1,13 +1,3 @@
-// type Category =
-//   | "film"
-//   | "music"
-//   | "animals"
-//   | "science"
-//   | "general-knowledge"
-//   | "sport"
-//   | "vehicles";
-
-// Hur ska detta typas och kombineras med parms i QuizPage?
 export function useCategoryColor(category: string | undefined) {
   let backgroundColor;
   switch (category) {

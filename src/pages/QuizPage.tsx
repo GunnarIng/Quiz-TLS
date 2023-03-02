@@ -4,40 +4,15 @@ import { AnswerButton } from "../Components/AnswerButton";
 import { HomeButton } from "../Components/HomeButton";
 import ErrorBoundary from "../ErrorBoundary";
 import { useCategoryColor } from "../hooks/useCategoryColor";
+import { useCategoryName } from "../hooks/useCategoryName";
+import { useQuiz } from "../hooks/useFetchQuiz";
 
 export function QuizPage() {
   const params = useParams();
   const classes = useStyles();
   const categoryColor = useCategoryColor(params.category);
-
-  let categoryName;
-
-  console.log("params.category", params.category);
-  switch (params.category) {
-    case "film":
-      categoryName = "Film";
-      break;
-    case "music":
-      categoryName = "Music";
-      break;
-    case "animals":
-      categoryName = "Animals";
-      break;
-    case "science":
-      categoryName = "Science";
-      break;
-    case "general-knowledge":
-      categoryName = "General Knowledge";
-      break;
-    case "sport":
-      categoryName = "Sport";
-      break;
-    case "vehicles":
-      categoryName = "Vehicles";
-      break;
-    default:
-      categoryName = "Unknown";
-  }
+  const categoryName = useCategoryName(params.category);
+  const quiz = useQuiz(params.category);
 
   return (
     <ErrorBoundary message="Something went wrong. Try reload the page.">
@@ -84,7 +59,6 @@ const useStyles = createUseStyles({
     position: "relative",
   },
   questionBox: {
-    border: "1px solid black",
     borderRadius: "1rem",
     display: "grid",
     justifyContent: "center",
@@ -92,7 +66,8 @@ const useStyles = createUseStyles({
     width: "70%",
     margin: "0 auto",
     padding: "1rem",
-    height: "300px",
+    height: "18.75rem",
+    color: "white",
   },
   answerContainer: {
     display: "grid",
