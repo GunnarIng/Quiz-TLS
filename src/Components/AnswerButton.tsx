@@ -13,8 +13,8 @@ export function AnswerButton(props: Props) {
   function handleChange() {
     props.onClick(props.children);
   }
-  // returns a div with the answer text and a background color
 
+  // returns a div with the answer text and a background color
   return (
     <div
       style={{ backgroundColor: props.bgColor }}
@@ -25,6 +25,8 @@ export function AnswerButton(props: Props) {
     </div>
   );
 }
+
+// STYLING --------------------------------------------------------------
 
 const useStyles = createUseStyles({
   answerBox: {

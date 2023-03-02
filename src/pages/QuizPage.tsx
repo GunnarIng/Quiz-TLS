@@ -75,6 +75,8 @@ export function QuizPage() {
   );
 }
 
+// STYLING --------------------------------------------------------------
+
 const useStyles = createUseStyles({
   subjectTitle: {
     fontSize: "2rem",

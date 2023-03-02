@@ -49,6 +49,8 @@ export function Categories() {
   );
 }
 
+// STYLING --------------------------------------------------------------
+
 const useStyles = createUseStyles({
   categoriesBoxStyle: {
     display: "flex",

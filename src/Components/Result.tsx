@@ -18,6 +18,8 @@ export function Result(props: Props) {
   );
 }
 
+// STYLING --------------------------------------------------------------
+
 const useStyles = createUseStyles({
   resultStyle: {
     display: "flex",

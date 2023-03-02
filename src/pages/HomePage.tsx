@@ -15,6 +15,8 @@ export function HomePage() {
   );
 }
 
+// STYLING --------------------------------------------------------------
+
 const useStyles = createUseStyles({
   rootStyle: {
     display: "flex",

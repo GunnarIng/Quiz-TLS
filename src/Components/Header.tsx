@@ -26,6 +26,8 @@ export function Header() {
   );
 }
 
+// STYLING --------------------------------------------------------------
+
 const useStyles = createUseStyles({
   headerContainer: {
     height: "5.3rem",

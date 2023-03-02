@@ -21,6 +21,8 @@ export function Category(props: Props) {
   );
 }
 
+// STYLING --------------------------------------------------------------
+
 const useStyles = createUseStyles({
   categoryStyle: {
     textAlign: "center",

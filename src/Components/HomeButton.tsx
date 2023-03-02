@@ -12,6 +12,8 @@ export function HomeButton() {
   );
 }
 
+// STYLING --------------------------------------------------------------
+
 const useStyles = createUseStyles({
   homeBtn: {
     display: "flex",
