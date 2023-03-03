@@ -38,6 +38,7 @@ const useStyles = createUseStyles({
     margin: "0 auto",
     padding: "1rem",
     color: "white",
+    cursor: "pointer",
     "&:hover": {
       scale: "1.1",
       transition: "all 0.3s",
