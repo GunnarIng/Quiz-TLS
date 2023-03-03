@@ -34,6 +34,7 @@ const useStyles = createUseStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    borderBottom: "2px solid #3e3a44",
 
     "& h1": {
       textAlign: "center",
@@ -51,11 +52,9 @@ const useStyles = createUseStyles({
   light: {
     color: "black",
     background: "white",
-    borderBottom: "2px solid #3e3a44",
   },
   dark: {
     color: "white",
     background: "black",
-    borderBottom: "2px solid #3e3a44",
   },
 });
