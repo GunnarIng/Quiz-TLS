@@ -6,7 +6,7 @@ Vi har i denna skoluppgift byggt vår första webbapplikation med hjälp av Reac
 
 
 En länk till vår webbapplikation hittar ni här:
-[The Quizie-Quiz Game](https://quizie-quiz.netlify.app/)
+[The Quizie-Quiz Game](https://quiziequiz.netlify.app)
 
 ## Installation & Utveckling
 
